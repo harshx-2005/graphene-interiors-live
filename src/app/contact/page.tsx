@@ -39,8 +39,8 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h4 className="font-bold text-primary text-base">Phone Hotline</h4>
-                  <a href="tel:+447775099710" className="text-text-charcoal hover:text-accent font-medium mt-0.5 block text-sm">
-                    +44 7775 099710
+                  <a href="tel:+447438199369" className="text-text-charcoal hover:text-accent font-medium mt-0.5 block text-sm">
+                    +44 7438 199369
                   </a>
                   <span className="text-xs text-gray-500 font-light block">Direct call with Arshad</span>
                 </div>
@@ -53,7 +53,7 @@ export default function ContactPage() {
                 <div>
                   <h4 className="font-bold text-primary text-base">WhatsApp Chat</h4>
                   <a 
-                    href="https://wa.me/447775099710" 
+                    href="https://wa.me/447438199369" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-text-charcoal hover:text-[#25D366] font-medium mt-0.5 block text-sm"

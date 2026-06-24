@@ -17,7 +17,7 @@ const servicesData: Record<string, {
   "kitchens": {
     title: "Luxury Fitted Kitchens Leicester",
     headline: "Exceptional Kitchen Layouts Built Around Your Lifestyle",
-    image: "/images/projects/modern_kitchen_beige.jpg",
+    image: "/images/projects/modern_kitchen_grey.jpg",
     description: "We build kitchens that are as functional as they are beautiful. From gloss finish cabinet doors and custom-built islands with waterfall worktop edges to integrated warm strip lighting channels, our Leicester joinery team handles every minor detail with craftsmanship.",
     bullets: [
       "Custom layout design incorporating sink runs and breakfast seating",
@@ -53,7 +53,7 @@ const servicesData: Record<string, {
   "fitted-wardrobes": {
     title: "Fitted Wardrobes Leicester",
     headline: "Shaker & Modern Wardrobe Closets Fitted Flush",
-    image: "/images/projects/fitted_wardrobe_desk.jpg",
+    image: "/images/projects/walkin_wardrobe_corner_angle2.jpg",
     description: "Maximize every square inch of your bedroom. Our fitted wardrobes are custom built to fit flush against your plaster walls, wrapping around sloped ceilings, irregular chimney breasts, and tight alcoves to leave zero wasted space.",
     bullets: [
       "Floor-to-ceiling cabinet framing with seamless side panels",
@@ -89,7 +89,7 @@ const servicesData: Record<string, {
   "bedrooms": {
     title: "Luxury Fitted Bedrooms Leicester",
     headline: "Bespoke Bedroom Cabinetry & Styling Layouts",
-    image: "/images/projects/sliding_wardrobe_green.jpg",
+    image: "/images/projects/bedroom_grey_concrete.jpg",
     description: "We create cohesive bedroom layouts. From floor-to-ceiling sliding closets and bedside floating drawer tables to integrated make-up dressing vanity tables, we design custom suites that look like high-end boutique hotels.",
     bullets: [
       "Fitted vanity desk tables with warm backlit mirrors",
@@ -107,7 +107,7 @@ const servicesData: Record<string, {
   "media-walls": {
     title: "TV Media Walls Leicester",
     headline: "Stunning Living Room Feature Media Walls",
-    image: "/images/projects/fitted_wardrobe_desk.jpg",
+    image: "/images/projects/media_wall_beige.jpg",
     description: "Make your entertainment layout a striking focal point. Our bespoke media walls incorporate fully hidden cable conduits, soundbar recesses, floating storage drawer units, and linear electric fireplace cutouts.",
     bullets: [
       "Solid timber framing built flush against your living room wall",
@@ -125,7 +125,7 @@ const servicesData: Record<string, {
   "worktops": {
     title: "Luxury Worktops Leicester",
     headline: "Premium Quartz & Granite Worktops fitted",
-    image: "/images/projects/modern_kitchen_beige.jpg",
+    image: "/images/projects/kitchen_grey_angle2.jpg",
     description: "A premium worktop coordinates a luxury kitchen. We supply and professionally fit premium Quartz and Granite surfaces featuring undermount sinks, custom draining grooves, and waterfall cladding edges for kitchen islands.",
     bullets: [
       "Precise laser templating at your Leicester home",
@@ -161,7 +161,7 @@ const servicesData: Record<string, {
   "custom-designs": {
     title: "Custom Joinery Designs Leicester",
     headline: "Turning Sketches into High-Grade Carpentry",
-    image: "/images/projects/sliding_wardrobe_green.jpg",
+    image: "/images/projects/bedroom_beige_dressing_angle2.jpg",
     description: "No matter how complex your storage ideas are, Arshad can design a practical solution. We map out under-stairs drawers, attic sloped-roof closets, and fireplace alcove cupboards, turning sketches into functional joinery.",
     bullets: [
       "Bespoke 3D modeling to coordinate designs",
@@ -324,10 +324,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             </div>
             <div className="border-t border-gray-200/50 pt-4 text-center">
               <a
-                href="tel:+447775099710"
+                href="tel:+447438199369"
                 className="text-xs font-bold text-primary hover:text-accent transition-colors block"
               >
-                Direct Call: +44 7775 099710
+                Direct Call: +44 7438 199369
               </a>
             </div>
           </div>

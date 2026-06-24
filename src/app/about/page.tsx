@@ -20,7 +20,7 @@ const companyValues = [
   {
     icon: Heart,
     title: "Family Care & Attentiveness",
-    desc: "As Brother Arshad's review notes, we are dedicated to listening to our clients and bringing their unique home visions to life seamlessly."
+    desc: "As Arshad's review notes, we are dedicated to listening to our clients and bringing their unique home visions to life seamlessly."
   },
   {
     icon: Star,
@@ -71,12 +71,15 @@ export default function AboutPage() {
           <div className="bg-secondary border border-gray-150 p-6 rounded-2xl space-y-4">
             <h4 className="font-serif text-base font-bold text-primary flex items-center space-x-2">
               <Award className="w-5 h-5 text-accent" />
-              <span>Certified Qualifications</span>
+              <span>Qualifications & Facilities</span>
             </h4>
             <ul className="space-y-2 text-xs font-light text-text-charcoal pl-7 list-disc">
               <li>**City & Guilds Carpentry & Joinery Level 2** Certification</li>
               <li>15+ Years Active On-Site Installation Experience in the Midlands</li>
               <li>Official UK Limited Incorporation (Active from 2024)</li>
+              <li>Own factory and professional machinery</li>
+              <li>Onsite cutting for precise, flush fitments</li>
+              <li>Separate showroom to view collections</li>
             </ul>
           </div>
         </div>
@@ -137,38 +140,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Professional Team Timeline */}
-      <section className="bg-primary text-white py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent block mb-2">Our Experience</span>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-white">Our Journey</h2>
-          </div>
 
-          <div className="max-w-3xl mx-auto space-y-8 relative before:absolute before:left-4 md:before:left-1/2 before:top-2 before:bottom-2 before:w-0.5 before:bg-accent/30">
-            {[
-              { year: "2010", title: "Joinery Apprenticeship", desc: "Arshad completes qualifications and begins active carpentry work in Leicester, mastering framing and custom cabinet assembly." },
-              { year: "2015", title: "Kitchen Specialists Fitted", desc: "Transitions to heavy-duty kitchen worktop cutting and luxury sliding door mechanisms, gaining reputation for precision fitting." },
-              { year: "2020", title: "Lead Joinery Operations", desc: "Running larger projects across Leicester, managing full conversions, plumbing, and bespoke room transformations." },
-              { year: "2024", title: "Incorporation of Graphene Interiors", desc: "Incorporated officially in Leicester, hiring specialized fitters to bring affordable luxury directly to customers." }
-            ].map((step, idx) => (
-              <div key={idx} className={`relative flex flex-col md:flex-row items-start md:items-center ${idx % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
-                {/* Center marker */}
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-accent border-4 border-primary rounded-full z-10" />
-                
-                {/* Content block */}
-                <div className="w-full md:w-1/2 pl-12 md:pl-0 md:px-8">
-                  <div className="bg-white/5 border border-white/10 p-6 rounded-2xl">
-                    <span className="text-accent font-bold font-serif text-lg block mb-1">{step.year}</span>
-                    <h4 className="font-serif font-semibold text-white text-base mb-2">{step.title}</h4>
-                    <p className="text-xs text-gray-400 font-light leading-relaxed">{step.desc}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Customer Commitment CTA */}
       <section className="py-24 max-w-5xl mx-auto px-6 text-center space-y-6">

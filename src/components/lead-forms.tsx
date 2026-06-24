@@ -89,7 +89,7 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
         <CheckCircle className="w-16 h-16 text-accent mb-4" />
         <h3 className="text-2xl font-serif font-semibold text-primary mb-2">Quote Request Received</h3>
         <p className="text-text-charcoal max-w-sm">
-          Thank you! Brother Arshad or a member of our team will contact you shortly to discuss your luxury project.
+          Thank you! Arshad or a member of our team will contact you shortly to discuss your luxury project.
         </p>
       </div>
     );
@@ -115,7 +115,7 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
             type="tel"
             {...register("phone")}
             className="w-full bg-secondary border border-gray-200 px-4 py-3 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
-            placeholder="+44 7775 099710"
+            placeholder="+44 7438 199369"
           />
           {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
         </div>
@@ -334,7 +334,7 @@ export function ConsultationForm({ onSuccess }: { onSuccess?: () => void }) {
             type="tel"
             {...register("phone")}
             className="w-full bg-secondary border border-gray-200 px-4 py-3 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
-            placeholder="+44 7775 099710"
+            placeholder="+44 7438 199369"
           />
           {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
         </div>

@@ -43,13 +43,11 @@ const Instagram = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Slide images for Hero section
 const heroSlides = [
-  "/images/projects/modern_kitchen_beige.jpg",
-  "/images/projects/sliding_wardrobe_dark.jpg",
-  "/images/projects/modern_kitchen_grey.jpg",
-  "/images/projects/fitted_wardrobe_desk.jpg",
-  "/images/projects/sliding_wardrobe_green.jpg",
+  "/images/projects/hero_wood_kitchen.jpg",
+  "/images/projects/hero_grey_kitchen_close.png",
+  "/images/projects/hero_media_wall.png",
+  "/images/projects/hero_grey_kitchen_wide.png",
 ];
 
 const servicesList = [
@@ -57,21 +55,21 @@ const servicesList = [
     title: "Luxury Kitchens",
     desc: "Fully bespoke kitchen spaces crafted with state-of-the-art materials, custom cabinetry, and ambient lighting.",
     benefits: ["Hand-fitted units", "Premium German hinges", "Integrated smart lighting"],
-    image: "/images/projects/modern_kitchen_beige.jpg",
+    image: "/images/projects/kitchen_beige_angle3.jpg",
     link: "/services/kitchens",
   },
   {
     title: "Fitted & Sliding Wardrobes",
     desc: "Custom storage solutions maximizing bedroom layouts with contemporary sliding glass doors and internal dressing drawers.",
     benefits: ["Soft-close slides", "Frosted & mirrored finishes", "Bespoke internal shelving"],
-    image: "/images/projects/sliding_wardrobe_dark.jpg",
+    image: "/images/projects/sliding_wardrobe_walnut.jpg",
     link: "/services/sliding-wardrobes",
   },
   {
     title: "TV Media Walls",
     desc: "Premium living room transformations integrating large screens, linear fireplaces, acoustic slat paneling, and storage.",
     benefits: ["Concealed cabling", "Custom LED backing", "Floating storage bays"],
-    image: "/images/projects/fitted_wardrobe_desk.jpg", // Wardrobe/desk with LED
+    image: "/images/projects/media_wall_woodslat.jpg",
     link: "/services/media-walls",
   },
   {
@@ -142,7 +140,7 @@ const faqs = [
   },
   {
     q: "How can I book a free home consultation?",
-    a: "You can book directly using the form on our contact page, clicking the 'Book Consultation' triggers on the site, or sending a quick text/photo on WhatsApp at +44 7775 099710."
+    a: "You can book directly using the form on our contact page, clicking the 'Book Consultation' triggers on the site, or sending a quick text/photo on WhatsApp at +44 7438 199369."
   }
 ];
 
@@ -170,7 +168,7 @@ export default function HomePage() {
             <motion.div
               key={currentSlide}
               initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 0.45, scale: 1 }}
+              animate={{ opacity: 0.75, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.5 }}
               className="relative w-full h-full"
@@ -185,7 +183,7 @@ export default function HomePage() {
             </motion.div>
           </AnimatePresence>
           {/* Ambient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-primary/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/60 z-[1]" />
         </div>
 
         {/* Hero Content */}
@@ -201,12 +199,18 @@ export default function HomePage() {
               <span>Leicester's Master Joiners</span>
             </span>
 
-            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
+            <h1 
+              className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
+              style={{ textShadow: "0 4px 18px rgba(0, 0, 0, 0.65)" }}
+            >
               Transforming Houses Into <br className="hidden md:inline" />
               <span className="text-accent">Beautiful Living Spaces</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-300 font-light max-w-3xl mx-auto leading-relaxed">
+            <p 
+              className="text-lg md:text-xl text-white font-light max-w-3xl mx-auto leading-relaxed"
+              style={{ textShadow: "0 2px 10px rgba(0, 0, 0, 0.6)" }}
+            >
               Luxury Kitchens, Bespoke Wardrobes, Media Walls & Full Interior Transformations across Leicester and the Midlands.
             </p>
 
@@ -219,11 +223,11 @@ export default function HomePage() {
               </button>
               
               <a
-                href="tel:+447775099710"
+                href="tel:+447438199369"
                 className="w-full sm:w-auto bg-primary/80 hover:bg-primary text-white border border-white/20 font-bold tracking-widest uppercase px-8 py-4 rounded-lg shadow-xl flex items-center justify-center space-x-2.5 transition-transform hover:-translate-y-0.5"
               >
                 <Phone className="w-4 h-4 text-accent animate-pulse" />
-                <span>Call +44 7775 099710</span>
+                <span>Call +44 7438 199369</span>
               </a>
             </div>
           </motion.div>
@@ -234,7 +238,7 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="flex items-center justify-center space-x-2 text-white/90 text-xs md:text-sm font-semibold tracking-wider">
               <Award className="w-5 h-5 text-accent" />
-              <span>15+ YEARS EXPERIENCE</span>
+              <span>2+ YEARS EXPERIENCE</span>
             </div>
             <div className="flex items-center justify-center space-x-2 text-white/90 text-xs md:text-sm font-semibold tracking-wider">
               <Hammer className="w-5 h-5 text-accent" />
@@ -261,7 +265,7 @@ export default function HomePage() {
                 Leicester's Certified Carpentry Specialists
               </h2>
               <p className="text-sm text-text-charcoal leading-relaxed">
-                Incorporated in 2024, **Graphene Interiors Ltd** fuses time-honored joinery methods with state-of-the-art designs. We hand-craft custom units from premium fixtures to ensure outstanding value for money.
+                Incorporated in 2024, Graphene Interiors Ltd fuses time-honored joinery methods with state-of-the-art designs. We hand-craft custom units from premium fixtures to ensure outstanding value for money.
               </p>
             </div>
             <div className="flex flex-wrap justify-center gap-6 md:gap-10">
@@ -366,7 +370,7 @@ export default function HomePage() {
             {/* Visual Column */}
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-accent/25 shadow-2xl">
               <ImageProtected
-                src="/images/projects/fitted_wardrobe_desk.jpg"
+                src="/images/projects/kitchen_grey_angle2.jpg"
                 alt="Arshad Joinery Craftsmanship"
                 fill
                 className="object-cover"
@@ -375,7 +379,7 @@ export default function HomePage() {
               <div className="absolute bottom-6 left-6 right-6 bg-primary/90 backdrop-blur-md p-6 rounded-2xl text-white border border-white/10">
                 <span className="text-accent font-bold text-xs uppercase tracking-widest block mb-1">Our Core Commitment</span>
                 <p className="text-xs leading-relaxed text-gray-300 font-light">
-                  "Brother Arshad ensured that our vision was fully understood and brought to life seamlessly... The quality of both the service and the final result exceeded our expectations."
+                  "Arshad ensured that our vision was fully understood and brought to life seamlessly... The quality of both the service and the final result exceeded our expectations."
                 </p>
               </div>
             </div>
@@ -388,7 +392,7 @@ export default function HomePage() {
                 Exceptional Value.
               </h2>
               <p className="text-sm text-text-charcoal leading-relaxed font-light">
-                Founded by expert fitter **Arshad**, Graphene Interiors Ltd brings over 15 years of joinery and carpentry experience to Leicester homes. Holding a **City & Guilds Level 2 Qualification** in Carpentry and Joinery, we deliver stunning kitchen layouts and wardrobe units built to fit precisely.
+                Founded by expert fitter Arshad, Graphene Interiors Ltd brings over 15 years of joinery and carpentry experience to Leicester homes. Holding a City & Guilds Level 2 Qualification in Carpentry and Joinery, we deliver stunning kitchen layouts and wardrobe units built to fit precisely.
               </p>
               <p className="text-sm text-text-charcoal leading-relaxed font-light">
                 Unlike generic retailers who mark up flat-pack systems, we manage raw materials directly, supply premium soft-close fixtures, and construct bespoke storage solutions, offering unparalleled value for money.
@@ -541,7 +545,7 @@ export default function HomePage() {
               <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent block">Our Edge</span>
               <h2 className="font-serif text-3xl md:text-5xl font-bold text-primary">Why Homeowners Trust Graphene Interiors</h2>
               <p className="text-sm text-text-charcoal font-light leading-relaxed">
-                When you hire us, you work directly with Brother Arshad and our in-house fitting team. We stand by our details:
+                When you hire us, you work directly with Arshad and our in-house fitting team. We stand by our details:
               </p>
 
               <div className="space-y-4 pt-2">
@@ -566,7 +570,7 @@ export default function HomePage() {
 
             {/* Right side stats & card overlay */}
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-accent/20 shadow-2xl">
-              <ImageProtected src="/images/projects/sliding_wardrobe_green.jpg" alt="Frosted sliding doors wardrobe" fill className="object-cover" />
+              <ImageProtected src="/images/projects/kitchen_beige_stools.jpg" alt="Kitchen Beige" fill className="object-cover" />
               <div className="absolute inset-0 bg-primary/20" />
               <div className="absolute top-6 left-6 bg-accent text-primary px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
                 Leicester LE5 Fitted
@@ -592,7 +596,7 @@ export default function HomePage() {
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-6 h-6 fill-current" />)}
               </div>
               <p className="font-serif text-lg md:text-xl text-primary italic leading-relaxed mb-6 font-light">
-                "I recently had my kitchen supplied and fitted by Graphene Kitchens, and I could not be more pleased with the experience. **Brother Arshad was exceptionally helpful, professional, and attentive** throughout the entire process. He ensured that our vision was fully understood and brought to life seamlessly, without any issues along the way.
+                "I recently had my kitchen supplied and fitted by Graphene Kitchens, and I could not be more pleased with the experience. Arshad was exceptionally helpful, professional, and attentive** throughout the entire process. He ensured that our vision was fully understood and brought to life seamlessly, without any issues along the way.
 
                 The quality of both the service and the final result exceeded our expectations. What stood out most was the outstanding value for money."
               </p>
@@ -763,7 +767,7 @@ export default function HomePage() {
                 <div className="flex items-start space-x-3">
                   <Phone className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                   <span className="text-xs text-text-charcoal">
-                    **Direct Carpentry Hot line:** +44 7775 099710
+                    **Direct Carpentry Hot line:** +44 7438 199369
                   </span>
                 </div>
               </div>

@@ -75,7 +75,7 @@ export default function RootLayout({
               "logo": "https://grapheneinteriors.co.uk/images/logo.png",
               "@id": "https://grapheneinteriors.co.uk/#localbusiness",
               "url": "https://grapheneinteriors.co.uk",
-              "telephone": "+447775099710",
+              "telephone": "+447438199369",
               "email": "grapheneinteriors@gmail.com",
               "address": {
                 "@type": "PostalAddress",

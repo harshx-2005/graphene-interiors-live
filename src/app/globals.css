@@ -3,11 +3,11 @@
 @theme {
   --color-primary: #111827;
   --color-secondary: #F8F8F8;
-  --color-accent: #C7A16B;
-  --color-accent-hover: #B38E5B;
+  --color-accent: #748f6e;
+  --color-accent-hover: #60765b;
   --color-text-charcoal: #1F2937;
-  --color-gold-light: #DFCAAE;
-  --color-gold-dark: #A57D4A;
+  --color-gold-light: #d9e2d7;
+  --color-gold-dark: #4d5f49;
   
   --font-serif: var(--font-serif), Georgia, serif;
   --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
@@ -109,5 +109,5 @@ input[type="radio"] {
 .card-hover-effect:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
-  border-color: rgba(199, 161, 107, 0.4) !important;
+  border-color: rgba(116, 143, 110, 0.4) !important;
 }

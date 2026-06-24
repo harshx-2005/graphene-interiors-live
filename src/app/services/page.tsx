@@ -40,21 +40,21 @@ const allServices = [
     title: "Bedrooms",
     desc: "Complete bedroom cabinetry fitouts, including side drawer units, dressing tables, headboard paneling, and storage.",
     benefits: ["Bespoke dressing tables", "Matching drawer chests", "Acoustic wood backing"],
-    image: "/images/projects/sliding_wardrobe_green.jpg",
+    image: "/images/projects/bedroom_grey_concrete.jpg",
   },
   {
     slug: "media-walls",
     title: "TV Media Walls",
     desc: "Stunning living room feature walls displaying large TV screens, electric fireplaces, and display shelving.",
     benefits: ["Hidden cable management", "Integrated LED channels", "Custom storage bays"],
-    image: "/images/projects/fitted_wardrobe_desk.jpg",
+    image: "/images/projects/media_wall_beige.jpg",
   },
   {
     slug: "worktops",
     title: "Luxury Worktops",
     desc: "Slab supply and fitting of premium Quartz, Granite, and Solid Oak surfaces with custom waterfall edges.",
     benefits: ["Seamless undermount sinks", "Stain-resistant Quartz", "Waterfall edge profiles"],
-    image: "/images/projects/modern_kitchen_beige.jpg",
+    image: "/images/projects/kitchen_grey_angle2.jpg",
   },
   {
     slug: "bespoke-furniture",
@@ -169,7 +169,7 @@ export default function ServicesPage() {
             Book Free Consultation
           </button>
           <a
-            href="tel:+447775099710"
+            href="tel:+447438199369"
             className="bg-white hover:bg-gray-50 text-primary border border-gray-200 font-bold tracking-widest uppercase px-6 py-3.5 rounded-lg shadow-md flex items-center space-x-2 text-xs"
           >
             <Phone className="w-4 h-4 text-accent" />

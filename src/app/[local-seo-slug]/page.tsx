@@ -190,7 +190,7 @@ export default async function LocalSeoLandingPage({ params }: LocalSeoPageProps)
               {pageData.aboutText}
             </p>
             <p className="text-sm font-light leading-relaxed text-text-charcoal">
-              We manage all dimensions, supply high-quality timber materials, coordinate trade pricing, and provide expert installation. You work directly with Brother Arshad and our Leicester-based joiners, ensuring value for money.
+              We manage all dimensions, supply high-quality timber materials, coordinate trade pricing, and provide expert installation. You work directly with Arshad and our Leicester-based joiners, ensuring value for money.
             </p>
           </div>
 
@@ -220,7 +220,7 @@ export default async function LocalSeoLandingPage({ params }: LocalSeoPageProps)
           {/* Local Area Trust Bar */}
           <div className="bg-secondary border border-gray-150 rounded-2xl p-6 grid grid-cols-2 gap-4 text-center">
             <div className="p-3">
-              <span className="block text-2xl font-serif font-bold text-accent">15+ Years</span>
+              <span className="block text-2xl font-serif font-bold text-accent">2+ Years</span>
               <span className="text-[9px] font-bold text-text-charcoal uppercase tracking-wider">Experience</span>
             </div>
             <div className="p-3">
@@ -254,7 +254,7 @@ export default async function LocalSeoLandingPage({ params }: LocalSeoPageProps)
               </li>
               <li className="flex items-start space-x-2">
                 <Phone className="w-4 h-4 text-accent shrink-0 mt-0.5" />
-                <a href="tel:+447775099710" className="hover:text-accent font-semibold">+44 7775 099710</a>
+                <a href="tel:+447438199369" className="hover:text-accent font-semibold">+44 7438 199369</a>
               </li>
             </ul>
             <div className="border-t border-white/10 pt-4 flex justify-between items-center text-[10px]">

@@ -36,11 +36,16 @@ export default function Footer() {
         {/* Company Identity & Accreditations */}
         <div className="space-y-6">
           <Link href="/" className="flex items-center space-x-3 select-none">
-            <div className="h-12 w-12 bg-white rounded-lg shadow-lg border border-accent/20 p-1 flex items-center justify-center overflow-hidden shrink-0">
+            <div 
+              className="h-12 w-12 bg-white rounded-lg shadow-lg border border-accent/20 p-1 flex items-center justify-center overflow-hidden shrink-0 select-none"
+              onContextMenu={(e) => e.preventDefault()}
+            >
               <img
                 src="/images/logo.png"
                 alt="Graphene Interiors Logo Icon"
-                className="w-full h-full object-contain origin-left scale-[1.5]"
+                className="w-full h-full object-contain pointer-events-none select-none no-save-image"
+                draggable={false}
+                onDragStart={(e) => e.preventDefault()}
               />
             </div>
             <div className="flex flex-col">
@@ -94,9 +99,9 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3.5 text-sm">
               <li>
-                <a href="tel:+447775099710" className="flex items-start space-x-3 hover:text-accent transition-colors">
+                <a href="tel:+447438199369" className="flex items-start space-x-3 hover:text-accent transition-colors">
                   <i className="fa-solid fa-phone text-accent mt-1 shrink-0"></i>
-                  <span>+44 7775 099710</span>
+                  <span>+44 7438 199369</span>
                 </a>
               </li>
               <li>
@@ -144,7 +149,7 @@ export default function Footer() {
           <div className="mt-3 flex justify-between items-center text-xs">
             <span className="text-gray-400">LE5 5LF, Leicester</span>
             <a
-              href="https://maps.app.goo.gl/uP9fP2fM8T8U13r57"
+              href="https://maps.app.goo.gl/XA3LVLXqt3mLuN7A6"
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent hover:underline uppercase font-bold tracking-wider"

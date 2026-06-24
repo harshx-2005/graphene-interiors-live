@@ -55,11 +55,16 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group select-none">
-            <div className="h-10 w-10 md:h-12 md:w-12 bg-white rounded-lg shadow-lg border border-accent/20 p-1 flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:border-accent overflow-hidden shrink-0">
+            <div 
+              className="h-10 w-10 md:h-12 md:w-12 bg-white rounded-lg shadow-lg border border-accent/20 p-1 flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:border-accent overflow-hidden shrink-0 select-none"
+              onContextMenu={(e) => e.preventDefault()}
+            >
               <img
                 src="/images/logo.png"
                 alt="Graphene Interiors Logo Icon"
-                className="w-full h-full object-contain origin-left scale-[1.5]"
+                className="w-full h-full object-contain pointer-events-none select-none no-save-image"
+                draggable={false}
+                onDragStart={(e) => e.preventDefault()}
               />
             </div>
             <div className="flex flex-col">
@@ -162,11 +167,11 @@ export default function Navbar() {
           {/* Desktop Right CTAs */}
           <div className="hidden lg:flex items-center space-x-6">
             <a 
-              href="tel:+447775099710"
+              href="tel:+447438199369"
               className="flex items-center space-x-2 text-sm text-gray-300 hover:text-accent transition-colors font-medium font-sans"
             >
               <i className="fa-solid fa-phone text-accent animate-pulse"></i>
-              <span>+44 7775 099710</span>
+              <span>+44 7438 199369</span>
             </a>
             
             <button
@@ -240,11 +245,11 @@ export default function Navbar() {
 
             <div className="mt-auto mb-12 flex flex-col items-center space-y-4">
               <a 
-                href="tel:+447775099710"
+                href="tel:+447438199369"
                 className="flex items-center space-x-2 text-lg text-white font-medium"
               >
                 <i className="fa-solid fa-phone text-accent"></i>
-                <span>+44 7775 099710</span>
+                <span>+44 7438 199369</span>
               </a>
               <button
                 onClick={() => {

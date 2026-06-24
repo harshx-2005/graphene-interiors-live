@@ -44,14 +44,14 @@ export default function FloatingWidget() {
               </p>
               <div className="space-y-2.5">
                 <a
-                  href="tel:+447775099710"
+                  href="tel:+447438199369"
                   className="flex items-center space-x-3 bg-white/10 hover:bg-white/15 px-4 py-2.5 rounded-lg text-sm transition-colors text-white"
                 >
                   <i className="fa-solid fa-phone text-accent"></i>
-                  <span>Call: +44 7775 099710</span>
+                  <span>Call: +44 7438 199369</span>
                 </a>
                 <a
-                  href="https://wa.me/447775099710"
+                  href="https://wa.me/447438199369"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 bg-[#25D366]/10 hover:bg-[#25D366]/20 px-4 py-2.5 rounded-lg text-sm transition-colors text-white border border-[#25D366]/20"
@@ -78,7 +78,7 @@ export default function FloatingWidget() {
         <div className="flex flex-col space-y-3 pointer-events-auto items-end">
           {/* Quick Call Button */}
           <a
-            href="tel:+447775099710"
+            href="tel:+447438199369"
             className="flex items-center justify-center w-12 h-12 rounded-full bg-primary border border-accent/30 text-accent hover:bg-accent hover:text-primary transition-all shadow-xl hover:scale-110 cursor-pointer animate-none"
             title="Call Graphene Interiors"
           >
@@ -87,7 +87,7 @@ export default function FloatingWidget() {
 
           {/* WhatsApp Button */}
           <a
-            href="https://wa.me/447775099710"
+            href="https://wa.me/447438199369"
             target="_blank"
             rel="noopener noreferrer"
             className="relative flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] text-white hover:bg-[#20ba5a] transition-all shadow-xl hover:scale-110 cursor-pointer"
