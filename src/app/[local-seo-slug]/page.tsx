@@ -18,7 +18,7 @@ const localSeoData: Record<string, {
   "kitchen-fitters-leicester": {
     title: "Expert Kitchen Fitters Leicester | Graphene Interiors Ltd",
     headline: "Professional Kitchen Fitting & Installation Across Leicester",
-    subheadline: "Get a high-end luxury kitchen fitted by qualified Level 2 carpenters with 15+ years experience.",
+    subheadline: "Get a high-end luxury kitchen fitted by qualified Level 2 carpenters with 10+ years experience.",
     image: "/images/projects/modern_kitchen_beige.jpg",
     aboutText: "Looking for reliable local kitchen fitters in Leicester? Graphene Interiors Ltd specializes in professional assembly and fitting of custom luxury kitchens. Our City & Guilds qualified carpenters ensure cabinetry is flush and solid.",
     bullets: [

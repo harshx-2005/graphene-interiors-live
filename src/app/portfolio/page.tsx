@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, Suspense, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { X, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ImageProtected from "@/components/image-protected";
@@ -250,10 +251,18 @@ const projectsData = [
   },
 ];
 
-export default function PortfolioPage() {
+function PortfolioContent() {
+  const searchParams = useSearchParams();
   const [activeCategory, setActiveCategory] = useState("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [zoomScale, setZoomScale] = useState(1);
+
+  useEffect(() => {
+    const categoryParam = searchParams.get("category");
+    if (categoryParam && portfolioCategories.some((cat) => cat.slug === categoryParam)) {
+      setActiveCategory(categoryParam);
+    }
+  }, [searchParams]);
 
   const filteredProjects = activeCategory === "all"
     ? projectsData
@@ -470,5 +479,17 @@ export default function PortfolioPage() {
       </section>
 
     </div>
+  );
+}
+
+export default function PortfolioPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    }>
+      <PortfolioContent />
+    </Suspense>
   );
 }

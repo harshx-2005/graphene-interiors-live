@@ -15,20 +15,20 @@ const servicesData: Record<string, {
   benefits: string[];
 }> = {
   "kitchens": {
-    title: "Luxury Fitted Kitchens Leicester",
-    headline: "Exceptional Kitchen Layouts Built Around Your Lifestyle",
+    title: "Luxury Fitted Kitchens & Renovations Leicester",
+    headline: "Bespoke Fitted Kitchens & Complete Kitchen Renovations Built Around Your Lifestyle",
     image: "/images/projects/modern_kitchen_grey.jpg",
-    description: "We build kitchens that are as functional as they are beautiful. From gloss finish cabinet doors and custom-built islands with waterfall worktop edges to integrated warm strip lighting channels, our Leicester joinery team handles every minor detail with craftsmanship.",
+    description: "We design, supply, and professionally install premium kitchens tailored to your lifestyle. From handleless gloss-finish cabinet doors and custom-built islands with waterfall quartz worktop edges to complete end-to-end renovations—including structural plastering, moving plumbing feeds, Gas Safe certified cooker fittings, and NICEIC certified wiring—our Leicester joinery team handles every minor detail with expert craftsmanship.",
     bullets: [
-      "Custom layout design incorporating sink runs and breakfast seating",
-      "Soft-close drawer runs and German-engineered Blum hinges",
-      "Integrated LED under-cabinet lighting and flush ambient channels",
-      "Professional carpentry fittings ensuring cabinets align perfectly"
+      "Bespoke layout design incorporating island seating, sink runs, and integrated appliances",
+      "Premium soft-close drawer runs and German-engineered Blum or Hettich hinges",
+      "Full project management including plumbing, Gas Safe installations, and electrical wiring",
+      "Professional carpentry and joinery ensuring cabinets, worktops, and trims align flush"
     ],
     benefits: [
+      "Bespoke luxury designs",
+      "Full renovation & fitting",
       "German soft-close hinges",
-      "Waterfall quartz profiles",
-      "Integrated waste systems",
       "5-Year installation warranty"
     ]
   },
@@ -51,19 +51,19 @@ const servicesData: Record<string, {
     ]
   },
   "fitted-wardrobes": {
-    title: "Fitted Wardrobes Leicester",
-    headline: "Shaker & Modern Wardrobe Closets Fitted Flush",
+    title: "Bespoke Fitted Wardrobes Leicester (Hinged & Sliding)",
+    headline: "Custom Shaker, Modern Hinged & Silent Sliding Wardrobe Closets",
     image: "/images/projects/walkin_wardrobe_corner_angle2.jpg",
-    description: "Maximize every square inch of your bedroom. Our fitted wardrobes are custom built to fit flush against your plaster walls, wrapping around sloped ceilings, irregular chimney breasts, and tight alcoves to leave zero wasted space.",
+    description: "Maximize every square inch of your bedroom storage. Our bespoke fitted wardrobes are custom-built to fit flush against your plaster walls, wrapping around sloped ceilings, irregular chimney breasts, and tight alcoves to leave zero wasted space. Whether you prefer classic shaker doors, high-gloss hinged cabinets, walk-in closets, or contemporary sliding mirrored glass panels running on premium silent tracks, we deliver the perfect solution.",
     bullets: [
-      "Floor-to-ceiling cabinet framing with seamless side panels",
-      "Shaker, plain gloss, or solid wood cabinet front finishes",
-      "Custom internal dividers: shoe racks, trousers rails, drawers",
-      "Professional joinery installation flush with skirting boards"
+      "Bespoke bedroom framing custom-built around sloped ceilings and chimney breasts",
+      "A range of styles including classic shaker doors, flat gloss fronts, and oak accents",
+      "Premium sliding glass, tinted mirror, or board panels on silent, heavy-duty track runs",
+      "Custom internal configurations: shoe racks, pull-out dressing drawers, and LED lighting"
     ],
     benefits: [
+      "Hinged & sliding options",
       "Zero wasted corner space",
-      "Shaker or gloss styles",
       "Bespoke internal shelving",
       "City & Guilds precision fit"
     ]
@@ -311,15 +311,15 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             <div className="space-y-4 text-xs font-light">
               <div className="flex items-center space-x-3">
                 <Award className="w-5 h-5 text-accent shrink-0" />
-                <span>**City & Guilds Carpentry** Level 2 Quality</span>
+                <span><strong>City & Guilds Carpentry</strong> Level 2 Quality</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Shield className="w-5 h-5 text-accent shrink-0" />
-                <span>**15+ Years** Professional Fitting Experience</span>
+                <span><strong>10+ Years</strong> Experienced Fitters</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Clock className="w-5 h-5 text-accent shrink-0" />
-                <span>**Free 3D Design layouts** on booked orders</span>
+                <span><strong>Free 3D Design layouts</strong> on booked orders</span>
               </div>
             </div>
             <div className="border-t border-gray-200/50 pt-4 text-center">

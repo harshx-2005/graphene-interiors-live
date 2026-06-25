@@ -53,31 +53,31 @@ const heroSlides = [
 const servicesList = [
   {
     title: "Luxury Kitchens",
-    desc: "Fully bespoke kitchen spaces crafted with state-of-the-art materials, custom cabinetry, and ambient lighting.",
-    benefits: ["Hand-fitted units", "Premium German hinges", "Integrated smart lighting"],
+    desc: "Bespoke high-end kitchen installations and full renovation transformations, covering plumbing, gas, electrical, and master joinery.",
+    benefits: ["Luxury custom design", "Full renovation & fit", "German soft-close hinges"],
     image: "/images/projects/kitchen_beige_angle3.jpg",
-    link: "/services/kitchens",
+    link: "/portfolio?category=kitchens",
   },
   {
-    title: "Fitted & Sliding Wardrobes",
-    desc: "Custom storage solutions maximizing bedroom layouts with contemporary sliding glass doors and internal dressing drawers.",
-    benefits: ["Soft-close slides", "Frosted & mirrored finishes", "Bespoke internal shelving"],
+    title: "Bespoke Fitted Wardrobe",
+    desc: "Bespoke shaker wardrobes, modern hinged closets, and sleek sliding mirror door systems custom-fitted to any bedroom layout.",
+    benefits: ["Hinged & sliding designs", "Custom internal storage", "Soft-close track runs"],
     image: "/images/projects/sliding_wardrobe_walnut.jpg",
-    link: "/services/sliding-wardrobes",
+    link: "/portfolio?category=wardrobes",
   },
   {
     title: "TV Media Walls",
     desc: "Premium living room transformations integrating large screens, linear fireplaces, acoustic slat paneling, and storage.",
     benefits: ["Concealed cabling", "Custom LED backing", "Floating storage bays"],
     image: "/images/projects/media_wall_woodslat.jpg",
-    link: "/services/media-walls",
+    link: "/portfolio?category=media-walls",
   },
   {
     title: "Bespoke Joinery & Worktops",
     desc: "Custom quartz worktop cladding and unique custom furniture built to order by Level 2 qualified carpenters.",
     benefits: ["Seamless marble-look cladding", "Solid oak drawer construction", "Durable finishes"],
     image: "/images/projects/modern_kitchen_grey.jpg",
-    link: "/services/worktops",
+    link: "/portfolio?category=worktops",
   },
 ];
 
@@ -270,8 +270,8 @@ export default function HomePage() {
             </div>
             <div className="flex flex-wrap justify-center gap-6 md:gap-10">
               <div className="bg-white border border-gray-100 rounded-2xl p-6 text-center shadow-md w-44">
-                <span className="block text-3xl font-serif font-bold text-accent mb-1">15+</span>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-text-charcoal">Years Fitting Joinery</span>
+                <span className="block text-3xl font-serif font-bold text-accent mb-1">10+</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-text-charcoal">Years Experienced Fitters</span>
               </div>
               <div className="bg-white border border-gray-100 rounded-2xl p-6 text-center shadow-md w-44">
                 <span className="block text-3xl font-serif font-bold text-accent mb-1">Level 2</span>
@@ -307,46 +307,53 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group bg-secondary border border-gray-150 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col justify-between"
+                className="group bg-secondary border border-gray-150 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col justify-between cursor-pointer"
               >
-                <div className="relative h-64 md:h-72 w-full overflow-hidden">
-                  <ImageProtected
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-                <div className="p-8 space-y-4">
-                  <h3 className="font-serif text-2xl font-semibold text-primary">{service.title}</h3>
-                  <p className="text-sm text-text-charcoal leading-relaxed font-light">{service.desc}</p>
-                  
-                  <ul className="space-y-1.5 pt-2">
-                    {service.benefits.map((b) => (
-                      <li key={b} className="flex items-center space-x-2 text-xs text-text-charcoal font-medium">
-                        <Check className="w-4 h-4 text-accent" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="pt-4 flex justify-between items-center">
-                    <Link
-                      href={service.link}
-                      className="text-xs font-bold tracking-widest text-primary hover:text-accent transition-colors uppercase flex items-center space-x-1.5"
-                    >
-                      <span>Explore Details</span>
-                      <ChevronRight className="w-4 h-4" />
-                    </Link>
-                    <button 
-                      onClick={openQuoteModal}
-                      className="bg-primary group-hover:bg-accent text-white group-hover:text-primary px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
-                    >
-                      Enquire
-                    </button>
+                <Link href={service.link} className="flex flex-col flex-grow">
+                  <div className="relative h-64 md:h-72 w-full overflow-hidden">
+                    <ImageProtected
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
-                </div>
+                  <div className="p-8 space-y-4 flex-grow flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <h3 className="font-serif text-2xl font-semibold text-primary">{service.title}</h3>
+                      <p className="text-sm text-text-charcoal leading-relaxed font-light">{service.desc}</p>
+                      
+                      <ul className="space-y-1.5 pt-2">
+                        {service.benefits.map((b) => (
+                          <li key={b} className="flex items-center space-x-2 text-xs text-text-charcoal font-medium">
+                            <Check className="w-4 h-4 text-accent" />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="pt-4 flex justify-between items-center" onClick={(e) => e.stopPropagation()}>
+                      <div
+                        className="text-xs font-bold tracking-widest text-primary hover:text-accent transition-colors uppercase flex items-center space-x-1.5"
+                      >
+                        <span>Explore Details</span>
+                        <ChevronRight className="w-4 h-4" />
+                      </div>
+                      <button 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          openQuoteModal();
+                        }}
+                        className="bg-primary group-hover:bg-accent text-white group-hover:text-primary px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                      >
+                        Enquire
+                      </button>
+                    </div>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </div>
