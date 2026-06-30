@@ -3,6 +3,7 @@ import { Playfair_Display, Outfit } from "next/font/google";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import FloatingWidget from "@/components/floating-widget";
+import PageLoader from "@/components/page-loader";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -119,6 +120,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <FloatingWidget />
+        <PageLoader />
       </body>
     </html>
   );
