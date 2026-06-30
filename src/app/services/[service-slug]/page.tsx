@@ -18,7 +18,7 @@ const servicesData: Record<string, {
     title: "Luxury Fitted Kitchens & Renovations Leicester",
     headline: "Bespoke Fitted Kitchens & Complete Kitchen Renovations Built Around Your Lifestyle",
     image: "/images/projects/modern_kitchen_grey.jpg",
-    description: "We design, supply, and professionally install premium kitchens tailored to your lifestyle. From handleless gloss-finish cabinet doors and custom-built islands with waterfall quartz worktop edges to complete end-to-end renovations—including structural plastering, moving plumbing feeds, Gas Safe certified cooker fittings, and NICEIC certified wiring—our Leicester joinery team handles every minor detail with expert craftsmanship.",
+    description: "We design, supply, and professionally install premium kitchens tailored to your lifestyle. From handleless gloss-finish cabinet doors and custom-built islands with waterfall quartz worktop edges to complete end-to-end renovations, moving plumbing feeds, Gas Safe certified cooker fittings, and NICEIC certified wiring—our Leicester joinery team handles every minor detail with expert craftsmanship.",
     bullets: [
       "Bespoke layout design incorporating island seating, sink runs, and integrated appliances",
       "Premium soft-close drawer runs and German-engineered Blum or Hettich hinges",
@@ -76,7 +76,6 @@ const servicesData: Record<string, {
     bullets: [
       "Frosted glass, plain color board, or tinted mirrors",
       "Perimeter LED strip lighting channels built into the framing",
-      "Anti-dust sealing strips to keep clothing fresh",
       "Custom internal dresser drawer setups with soft-close slides"
     ],
     benefits: [
@@ -110,9 +109,7 @@ const servicesData: Record<string, {
     image: "/images/projects/media_wall_beige.jpg",
     description: "Make your entertainment layout a striking focal point. Our bespoke media walls incorporate fully hidden cable conduits, soundbar recesses, floating storage drawer units, and linear electric fireplace cutouts.",
     bullets: [
-      "Solid timber framing built flush against your living room wall",
       "Concealed HDMI and power cable conduits behind paneling",
-      "Acoustic slat panels or paint-grade smooth plaster boards",
       "Integrated showcase shelving with remote warm LED backing"
     ],
     benefits: [

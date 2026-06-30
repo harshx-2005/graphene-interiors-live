@@ -103,7 +103,7 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
           <input
             type="text"
             {...register("name")}
-            className="w-full bg-secondary border border-gray-200 px-4 py-3 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
+            className="w-full bg-secondary border border-gray-200 px-4 h-12 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
             placeholder="John Doe"
           />
           {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
@@ -114,7 +114,7 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
           <input
             type="tel"
             {...register("phone")}
-            className="w-full bg-secondary border border-gray-200 px-4 py-3 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
+            className="w-full bg-secondary border border-gray-200 px-4 h-12 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
             placeholder="+44 7438 199369"
           />
           {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
@@ -127,7 +127,7 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
           <input
             type="email"
             {...register("email")}
-            className="w-full bg-secondary border border-gray-200 px-4 py-3 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
+            className="w-full bg-secondary border border-gray-200 px-4 h-12 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
             placeholder="john@example.com"
           />
           {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
@@ -137,7 +137,7 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
           <label className="block text-xs font-semibold uppercase tracking-wider text-primary mb-1.5">Service Required *</label>
           <select
             {...register("service")}
-            className="w-full bg-secondary border border-gray-200 px-4 py-3 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors appearance-none"
+            className="w-full bg-secondary border border-gray-200 px-4 h-12 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors cursor-pointer"
           >
             <option value="">Select Service...</option>
             <option value="kitchens">Kitchens</option>
@@ -157,7 +157,7 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
           <label className="block text-xs font-semibold uppercase tracking-wider text-primary mb-1.5">Project Budget *</label>
           <select
             {...register("budget")}
-            className="w-full bg-secondary border border-gray-200 px-4 py-3 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
+            className="w-full bg-secondary border border-gray-200 px-4 h-12 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors cursor-pointer"
           >
             <option value="">Select Budget Range...</option>
             <option value="under-5k">Under £5,000</option>
@@ -175,7 +175,7 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
           <input
             type="text"
             {...register("address")}
-            className="w-full bg-secondary border border-gray-200 px-4 py-3 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
+            className="w-full bg-secondary border border-gray-200 px-4 h-12 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
             placeholder="Leicester, LE5 5LF"
           />
           {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address.message}</p>}
@@ -321,7 +321,7 @@ export function ConsultationForm({ onSuccess }: { onSuccess?: () => void }) {
         <input
           type="text"
           {...register("name")}
-          className="w-full bg-secondary border border-gray-200 px-4 py-3 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
+          className="w-full bg-secondary border border-gray-200 px-4 h-12 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
           placeholder="Sarah Jenkins"
         />
         {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
@@ -333,7 +333,7 @@ export function ConsultationForm({ onSuccess }: { onSuccess?: () => void }) {
           <input
             type="tel"
             {...register("phone")}
-            className="w-full bg-secondary border border-gray-200 px-4 py-3 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
+            className="w-full bg-secondary border border-gray-200 px-4 h-12 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
             placeholder="+44 7438 199369"
           />
           {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
@@ -344,7 +344,7 @@ export function ConsultationForm({ onSuccess }: { onSuccess?: () => void }) {
           <input
             type="email"
             {...register("email")}
-            className="w-full bg-secondary border border-gray-200 px-4 py-3 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
+            className="w-full bg-secondary border border-gray-200 px-4 h-12 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
             placeholder="sarah@example.com"
           />
           {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
@@ -357,7 +357,7 @@ export function ConsultationForm({ onSuccess }: { onSuccess?: () => void }) {
           <input
             type="date"
             {...register("preferredDate")}
-            className="w-full bg-secondary border border-gray-200 px-4 py-3 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
+            className="w-full bg-secondary border border-gray-200 px-4 h-12 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
           />
           {errors.preferredDate && <p className="text-red-500 text-xs mt-1">{errors.preferredDate.message}</p>}
         </div>
@@ -366,7 +366,7 @@ export function ConsultationForm({ onSuccess }: { onSuccess?: () => void }) {
           <label className="block text-xs font-semibold uppercase tracking-wider text-primary mb-1.5">Preferred Time *</label>
           <select
             {...register("preferredTime")}
-            className="w-full bg-secondary border border-gray-200 px-4 py-3 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors"
+            className="w-full bg-secondary border border-gray-200 px-4 h-12 rounded-lg text-primary focus:outline-none focus:border-accent transition-colors cursor-pointer"
           >
             <option value="">Select Time Slot...</option>
             <option value="morning">Morning (9:00 AM – 12:00 PM)</option>

@@ -65,7 +65,7 @@ export default function AboutPage() {
             Founded by veteran joiner Arshad, Graphene Interiors Ltd was incorporated in 2024 to bring premium quality interior carpentry directly to Leicester homes. We specialize in supply-and-fit kitchens, sliding wardrobe sets, and bespoke custom units.
           </p>
           <p className="text-sm font-light leading-relaxed">
-            Our company operates on a simple principle: outstanding value for money. We bypass retail sales staff and flat-pack kit limitations. Instead, we use trade-only cabinet suppliers, hand-fit custom drawers, and utilize heavy-duty track runs to deliver bespoke spaces that look and feel worth £5,000 to £10,000.
+            Our company operates on a simple principle: outstanding value for money. We bypass retail sales staff and flat-pack kit limitations. Instead, we use trade-only cabinet suppliers, hand-fit custom drawers, and create bespoke spaces with a truly high-end, luxury finish.
           </p>
 
           <div className="bg-secondary border border-gray-150 p-6 rounded-2xl space-y-4">

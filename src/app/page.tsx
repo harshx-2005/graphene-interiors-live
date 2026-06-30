@@ -295,7 +295,7 @@ export default function HomePage() {
             <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent block mb-2">Luxury Transformations</span>
             <h2 className="font-serif text-3xl md:text-5xl font-bold text-primary mb-4">Our Premium Offerings</h2>
             <p className="text-sm text-text-charcoal leading-relaxed font-light">
-              We cover everything from individual bespoke units to full kitchen and bathroom renovations, delivering precision and care in every detail.
+              We cover everything from individual bespoke units to full kitchen renovations, delivering precision and care in every detail.
             </p>
           </div>
 
