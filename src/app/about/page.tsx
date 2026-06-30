@@ -62,10 +62,10 @@ export default function AboutPage() {
             Driven by Passion, Built for Leicestershire Families
           </h2>
           <p className="text-sm font-light leading-relaxed">
-            Founded by veteran joiner **Arshad**, **Graphene Interiors Ltd** was incorporated in 2024 to bring premium quality interior carpentry directly to Leicester homes. We specialize in supply-and-fit kitchens, sliding wardrobe sets, and bespoke custom units.
+            Founded by veteran joiner Arshad, Graphene Interiors Ltd was incorporated in 2024 to bring premium quality interior carpentry directly to Leicester homes. We specialize in supply-and-fit kitchens, sliding wardrobe sets, and bespoke custom units.
           </p>
           <p className="text-sm font-light leading-relaxed">
-            Our company operates on a simple principle: **outstanding value for money**. We bypass retail sales staff and flat-pack kit limitations. Instead, we use trade-only cabinet suppliers, hand-fit custom drawers, and utilize heavy-duty track runs to deliver bespoke spaces that look and feel worth £5,000 to £10,000.
+            Our company operates on a simple principle: outstanding value for money. We bypass retail sales staff and flat-pack kit limitations. Instead, we use trade-only cabinet suppliers, hand-fit custom drawers, and utilize heavy-duty track runs to deliver bespoke spaces that look and feel worth £5,000 to £10,000.
           </p>
 
           <div className="bg-secondary border border-gray-150 p-6 rounded-2xl space-y-4">
@@ -74,8 +74,8 @@ export default function AboutPage() {
               <span>Qualifications & Facilities</span>
             </h4>
             <ul className="space-y-2 text-xs font-light text-text-charcoal pl-7 list-disc">
-              <li>**City & Guilds Carpentry & Joinery Level 2** Certification</li>
-              <li>15+ Years Active On-Site Installation Experience in the Midlands</li>
+              <li>City & Guilds Carpentry & Joinery Level 2 Certification</li>
+              <li>10+ Years Active On-Site Installation Experience in the Midlands</li>
               <li>Official UK Limited Incorporation (Active from 2024)</li>
               <li>Own factory and professional machinery</li>
               <li>Onsite cutting for precise, flush fitments</li>
@@ -85,14 +85,16 @@ export default function AboutPage() {
         </div>
 
         {/* Story visual */}
-        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-accent/25">
-          <ImageProtected
-            src="/images/projects/modern_kitchen_grey.jpg"
-            alt="Grey gloss kitchen installation"
-            fill
-            className="object-cover"
+        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-accent/25 bg-primary">
+          <video
+            className="w-full h-full object-cover select-none pointer-events-none"
+            src="/videos/manufacturing.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
           />
-          <div className="absolute inset-0 bg-primary/10" />
+          <div className="absolute inset-0 bg-primary/10 pointer-events-none" />
         </div>
 
       </section>

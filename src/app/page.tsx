@@ -87,8 +87,8 @@ const faqs = [
     a: "We specialize in custom kitchens, full kitchen renovations, fitted and sliding wardrobes, bedroom cabinets, media walls, bespoke living room furniture, luxury worktops, and comprehensive interior carpentry transformations."
   },
   {
-    q: "Are your fitters qualified and insured?",
-    a: "Yes, our team consists of professional fitters with 15+ years of experience. Our work is directed by City & Guilds Carpentry & Joinery Level 2 qualified craftsmen, and we hold full liability insurance."
+    q: "Are your fitters qualified?",
+    a: "Yes, our team consists of professional fitters with 10+ years of experience. Our work is directed by City & Guilds Carpentry & Joinery Level 2 qualified craftsmen."
   },
   {
     q: "Where are you based and what areas do you serve?",
@@ -96,15 +96,15 @@ const faqs = [
   },
   {
     q: "How long is the typical lead time for a custom kitchen or wardrobe?",
-    a: "Lead times range from 4 to 8 weeks from design approval to delivery and installation. Custom materials or premium custom joinery might extend this window, which we clarify during ordering."
+    a: "Lead times range from 4 to 6 weeks from design approval to delivery and installation. Custom materials or premium custom joinery might extend this window, which we clarify during ordering."
   },
   {
     q: "Do you supply the materials or do we buy them?",
-    a: "We provide complete end-to-end supply and fit services. We design, source high-grade timber/quartz/fittings directly from top UK manufacturers (ensuring trade pricing), and carry out the professional installation."
+    a: "We provide complete end-to-end supply and fit services. We design, source high-grade MFC & MDF/quartz/fittings directly from top UK manufacturers (ensuring trade pricing), and carry out the professional installation."
   },
   {
     q: "What is your consultation and quoting process?",
-    a: "Our consultations are completely free. We visit your home to discuss ideas, measure the space, outline options, and provide a fully costed quote within 48 hours."
+    a: "Our consultations are completely free. Discuss ideas and then quote."
   },
   {
     q: "Do you offer 3D design visualizations?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     q: "Do you handle plumbing and electrical works for kitchen renovations?",
-    a: "Yes, we handle the complete renovation including carpentry, plumbing, gas works, electrical wiring, tiling, and luxury lighting, using certified Gas Safe and NICEIC subcontractors."
+    a: "Yes, we handle the complete renovation including carpentry, plumbing, gas works, electrical wiring, and luxury lighting, using certified Gas Safe and NICEIC subcontractors."
   },
   {
     q: "Do you provide guarantees on your installations?",
@@ -238,7 +238,7 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="flex items-center justify-center space-x-2 text-white/90 text-xs md:text-sm font-semibold tracking-wider">
               <Award className="w-5 h-5 text-accent" />
-              <span>2+ YEARS EXPERIENCE</span>
+              <span>PREMIUM FITTING</span>
             </div>
             <div className="flex items-center justify-center space-x-2 text-white/90 text-xs md:text-sm font-semibold tracking-wider">
               <Hammer className="w-5 h-5 text-accent" />
@@ -375,14 +375,16 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Visual Column */}
-            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-accent/25 shadow-2xl">
-              <ImageProtected
-                src="/images/projects/kitchen_grey_angle2.jpg"
-                alt="Arshad Joinery Craftsmanship"
-                fill
-                className="object-cover"
+            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-accent/25 shadow-2xl bg-primary">
+              <video
+                className="w-full h-full object-cover select-none pointer-events-none"
+                src="/videos/manufacturing.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
               />
-              <div className="absolute inset-0 bg-primary/20" />
+              <div className="absolute inset-0 bg-primary/20 pointer-events-none" />
               <div className="absolute bottom-6 left-6 right-6 bg-primary/90 backdrop-blur-md p-6 rounded-2xl text-white border border-white/10">
                 <span className="text-accent font-bold text-xs uppercase tracking-widest block mb-1">Our Core Commitment</span>
                 <p className="text-xs leading-relaxed text-gray-300 font-light">
@@ -399,7 +401,7 @@ export default function HomePage() {
                 Exceptional Value.
               </h2>
               <p className="text-sm text-text-charcoal leading-relaxed font-light">
-                Founded by expert fitter Arshad, Graphene Interiors Ltd brings over 15 years of joinery and carpentry experience to Leicester homes. Holding a City & Guilds Level 2 Qualification in Carpentry and Joinery, we deliver stunning kitchen layouts and wardrobe units built to fit precisely.
+                Founded by expert Arshad, Graphene Interiors Ltd brings over 10 years experience fitters of joinery and carpentry experience to Leicester homes. Holding a City & Guilds Level 2 Qualification in Carpentry and Joinery, we deliver stunning kitchen layouts and wardrobe units built to fit precisely.
               </p>
               <p className="text-sm text-text-charcoal leading-relaxed font-light">
                 Unlike generic retailers who mark up flat-pack systems, we manage raw materials directly, supply premium soft-close fixtures, and construct bespoke storage solutions, offering unparalleled value for money.
@@ -411,7 +413,7 @@ export default function HomePage() {
                     <Shield className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-primary">5-Year Guarantee</h4>
+                    <h4 className="text-sm font-bold text-primary">3-Year Guarantee</h4>
                     <p className="text-xs text-text-charcoal font-light">Complete structural protection.</p>
                   </div>
                 </div>
@@ -517,7 +519,7 @@ export default function HomePage() {
                   sliderCategory === "wardrobe" ? "bg-primary text-white" : "text-text-charcoal hover:bg-gray-50"
                 }`}
               >
-                Sliding Wardrobe
+                Under-Stairs Storage
               </button>
             </div>
           </div>
@@ -525,17 +527,17 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto">
             {sliderCategory === "kitchen" ? (
               <BeforeAfterSlider
-                beforeImage="/images/projects/before_kitchen.png"
-                afterImage="/images/projects/modern_kitchen_beige.jpg"
-                beforeAlt="Dated 90s kitchen with worn wooden cabinets"
-                afterAlt="Modern high-gloss beige kitchen fitted by Graphene Interiors"
+                beforeImage="/images/projects/before_kitchen_renovation.jpg"
+                afterImage="/images/projects/after_kitchen_renovation.jpg"
+                beforeAlt="Raw kitchen space during renovation with exposed brickwork"
+                afterAlt="Luxurious white gloss kitchen with gold profiles and dark marble worktops"
               />
             ) : (
               <BeforeAfterSlider
-                beforeImage="/images/projects/before_wardrobe.png"
-                afterImage="/images/projects/sliding_wardrobe_dark.jpg"
-                beforeAlt="Cluttered and chipping plain white closet"
-                afterAlt="Custom sliding mirrored wardrobe with ambient LED strip lights"
+                beforeImage="/images/projects/before_understairs.jpg"
+                afterImage="/images/projects/after_understairs.jpg"
+                beforeAlt="Empty under-stairs cavity under construction"
+                afterAlt="Bespoke fitted oak under-stairs storage drawers and cabinets"
               />
             )}
           </div>

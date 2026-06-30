@@ -67,7 +67,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center space-x-3 text-xs">
               <i className="fa-solid fa-shield-halved text-accent text-lg shrink-0"></i>
-              <span>15+ Years Professional Experience</span>
+              <span>Professional Experience</span>
             </div>
           </div>
         </div>

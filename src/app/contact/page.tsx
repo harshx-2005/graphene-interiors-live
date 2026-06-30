@@ -42,7 +42,7 @@ export default function ContactPage() {
                   <a href="tel:+447438199369" className="text-text-charcoal hover:text-accent font-medium mt-0.5 block text-sm">
                     +44 7438 199369
                   </a>
-                  <span className="text-xs text-gray-500 font-light block">Direct call with Arshad</span>
+                  <span className="text-xs text-gray-500 font-light block">Direct call</span>
                 </div>
               </li>
 
