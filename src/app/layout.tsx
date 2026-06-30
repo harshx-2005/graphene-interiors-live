@@ -115,7 +115,7 @@ export default function RootLayout({
           }}
         />
         <Navbar />
-        <main className="min-h-screen pt-20">
+        <main className="min-h-screen pt-[73px] md:pt-[81px]">
           {children}
         </main>
         <Footer />

@@ -161,7 +161,7 @@ export default function HomePage() {
     <div className="relative">
       
       {/* 1. HERO SECTION */}
-      <section className="relative h-[92vh] flex items-center justify-center overflow-hidden bg-primary">
+      <section className="relative min-h-[calc(100vh-73px)] md:h-[92vh] flex items-center justify-center overflow-hidden bg-primary py-12 md:py-0">
         {/* Slideshow Images */}
         <div className="absolute inset-0 z-0">
           <AnimatePresence mode="wait">
@@ -187,12 +187,12 @@ export default function HomePage() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
+        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white pb-24 md:pb-0">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="space-y-4 md:space-y-6"
           >
             <span className="inline-flex items-center space-x-2 bg-accent/20 border border-accent/30 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-accent mb-2">
               <Sparkles className="w-3.5 h-3.5" />
@@ -200,7 +200,7 @@ export default function HomePage() {
             </span>
 
             <h1 
-              className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
+              className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
               style={{ textShadow: "0 4px 18px rgba(0, 0, 0, 0.65)" }}
             >
               Transforming Houses Into <br className="hidden md:inline" />
@@ -208,7 +208,7 @@ export default function HomePage() {
             </h1>
 
             <p 
-              className="text-lg md:text-xl text-white font-light max-w-3xl mx-auto leading-relaxed"
+              className="text-sm sm:text-base md:text-xl text-white/95 font-light max-w-3xl mx-auto leading-relaxed"
               style={{ textShadow: "0 2px 10px rgba(0, 0, 0, 0.6)" }}
             >
               Luxury Kitchens, Bespoke Wardrobes, Media Walls & Full Interior Transformations across Leicester and the Midlands.
@@ -721,6 +721,7 @@ export default function HomePage() {
                   <button
                     onClick={() => setActiveFaq(isOpen ? null : index)}
                     className="w-full text-left px-6 py-5 bg-secondary hover:bg-gray-100/60 flex justify-between items-center transition-colors cursor-pointer"
+                    suppressHydrationWarning
                   >
                     <span className="text-sm font-semibold text-primary font-sans flex items-start space-x-3">
                       <HelpCircle className="w-5 h-5 text-accent shrink-0 mt-0.5" />
