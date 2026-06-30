@@ -34,7 +34,7 @@ export default function ContactPage() {
 
             <ul className="space-y-6 text-sm">
               <li className="flex items-start space-x-4">
-                <div className="bg-accent/15 text-accent p-3 rounded-xl shrink-0 mt-1">
+                <div className="w-11 h-11 flex items-center justify-center bg-accent/15 text-accent rounded-xl shrink-0 mt-1">
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
@@ -47,8 +47,8 @@ export default function ContactPage() {
               </li>
 
               <li className="flex items-start space-x-4">
-                <div className="bg-[#25D366]/10 text-[#25D366] p-3 rounded-xl shrink-0 mt-1">
-                  <i className="fa-brands fa-whatsapp text-xl w-5 h-5 flex items-center justify-center"></i>
+                <div className="w-11 h-11 flex items-center justify-center bg-[#25D366]/10 text-[#25D366] rounded-xl shrink-0 mt-1">
+                  <i className="fa-brands fa-whatsapp text-[22px] leading-none"></i>
                 </div>
                 <div>
                   <h4 className="font-bold text-primary text-base">WhatsApp Chat</h4>
@@ -65,7 +65,7 @@ export default function ContactPage() {
               </li>
 
               <li className="flex items-start space-x-4">
-                <div className="bg-accent/15 text-accent p-3 rounded-xl shrink-0 mt-1">
+                <div className="w-11 h-11 flex items-center justify-center bg-accent/15 text-accent rounded-xl shrink-0 mt-1">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
@@ -78,7 +78,7 @@ export default function ContactPage() {
               </li>
 
               <li className="flex items-start space-x-4">
-                <div className="bg-accent/15 text-accent p-3 rounded-xl shrink-0 mt-1">
+                <div className="w-11 h-11 flex items-center justify-center bg-accent/15 text-accent rounded-xl shrink-0 mt-1">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
@@ -92,7 +92,7 @@ export default function ContactPage() {
               </li>
 
               <li className="flex items-start space-x-4">
-                <div className="bg-accent/15 text-accent p-3 rounded-xl shrink-0 mt-1">
+                <div className="w-11 h-11 flex items-center justify-center bg-accent/15 text-accent rounded-xl shrink-0 mt-1">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>

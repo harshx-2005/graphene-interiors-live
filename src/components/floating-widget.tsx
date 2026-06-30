@@ -75,11 +75,11 @@ export default function FloatingWidget() {
         </AnimatePresence>
 
         {/* Action Triggers */}
-        <div className="flex flex-col space-y-3 pointer-events-auto items-end">
+        <div className="flex flex-col space-y-3 pointer-events-auto items-center">
           {/* Quick Call Button */}
           <a
             href="tel:+447438199369"
-            className="flex items-center justify-center w-12 h-12 rounded-full bg-primary border border-accent/30 text-accent hover:bg-accent hover:text-primary transition-all shadow-xl hover:scale-110 cursor-pointer animate-none"
+            className="flex items-center justify-center w-14 h-14 rounded-full bg-primary border border-accent/30 text-accent hover:bg-accent hover:text-primary transition-all shadow-xl hover:scale-110 cursor-pointer animate-none"
             title="Call Graphene Interiors"
           >
             <i className="fa-solid fa-phone text-lg"></i>
@@ -90,7 +90,7 @@ export default function FloatingWidget() {
             href="https://wa.me/447438199369"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] text-white hover:bg-[#20ba5a] transition-all shadow-xl hover:scale-110 cursor-pointer"
+            className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white hover:bg-[#20ba5a] transition-all shadow-xl hover:scale-110 cursor-pointer"
             title="Chat on WhatsApp"
           >
             <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-40 animate-ping" />

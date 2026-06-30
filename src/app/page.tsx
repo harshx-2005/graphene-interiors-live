@@ -770,13 +770,13 @@ export default function HomePage() {
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                   <span className="text-xs text-text-charcoal">
-                    **Office / Joinery Shop:** 48 Chesterfield Road, Leicester, LE5 5LF
+                    Office / Joinery Shop: 48 Chesterfield Road, Leicester, LE5 5LF
                   </span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <Phone className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                   <span className="text-xs text-text-charcoal">
-                    **Direct Carpentry Hot line:** +44 7438 199369
+                    Direct Carpentry Hot line: +44 7438 199369
                   </span>
                 </div>
               </div>
