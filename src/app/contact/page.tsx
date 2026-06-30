@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Phone, Mail, MapPin, Clock, MessageCircle, FileText } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, FileText } from "lucide-react";
 import ImageProtected from "@/components/image-protected";
 import { FreeQuoteForm } from "@/components/lead-forms";
 
@@ -48,7 +48,7 @@ export default function ContactPage() {
 
               <li className="flex items-start space-x-4">
                 <div className="bg-[#25D366]/10 text-[#25D366] p-3 rounded-xl shrink-0 mt-1">
-                  <MessageCircle className="w-5 h-5" />
+                  <i className="fa-brands fa-whatsapp text-xl w-5 h-5 flex items-center justify-center"></i>
                 </div>
                 <div>
                   <h4 className="font-bold text-primary text-base">WhatsApp Chat</h4>
