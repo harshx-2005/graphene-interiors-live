@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Check, Star, Shield, Award, MapPin, Phone, HelpCircle } from "lucide-react";
 import ImageProtected from "@/components/image-protected";
+import VideoProtected from "@/components/video-protected";
 import { FreeQuoteForm } from "@/components/lead-forms";
 import { openQuoteModal } from "@/components/floating-widget";
 
@@ -11,6 +12,7 @@ const localSeoData: Record<string, {
   headline: string;
   subheadline: string;
   image: string;
+  video?: string;
   aboutText: string;
   bullets: string[];
   keywords: string[];
@@ -20,6 +22,7 @@ const localSeoData: Record<string, {
     headline: "Professional Kitchen Fitting & Installation Across Leicester",
     subheadline: "Get a high-end luxury kitchen fitted by qualified Level 2 carpenters with 10+ years experience.",
     image: "/images/projects/modern_kitchen_beige.jpg",
+    video: "/videos/Video Project 3.mp4",
     aboutText: "Looking for reliable local kitchen fitters in Leicester? Graphene Interiors Ltd specializes in professional assembly and fitting of custom luxury kitchens. Our City & Guilds qualified carpenters ensure cabinetry is flush and solid.",
     bullets: [
       "Fitted by certified Level 2 Carpentry & Joinery fitters",
@@ -34,6 +37,7 @@ const localSeoData: Record<string, {
     headline: "Luxury Kitchen Renovations & Remodeling in Leicester",
     subheadline: "Complete transformations. We manage tearing out, plumbing, electrics, plastering, and cabinetry.",
     image: "/images/projects/modern_kitchen_grey.jpg",
+    video: "/videos/Video Project 3.mp4",
     aboutText: "Turn your old kitchen into a premium high-gloss masterpiece. We coordinate the full kitchen renovation process in Leicestershire. We supervise certified gas engineers and electricians to make fitting simple.",
     bullets: [
       "Full project management from teardown to structural fit",
@@ -194,13 +198,23 @@ export default async function LocalSeoLandingPage({ params }: LocalSeoPageProps)
             </p>
           </div>
 
-          <div className="relative aspect-video rounded-2xl overflow-hidden border border-accent/25 shadow-xl">
-            <ImageProtected
-              src={pageData.image}
-              alt={pageData.title}
-              fill
-              className="object-cover"
-            />
+          <div className="relative aspect-video rounded-2xl overflow-hidden border border-accent/25 shadow-xl bg-primary">
+            {pageData.video ? (
+              <VideoProtected
+                src={pageData.video}
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            ) : (
+              <ImageProtected
+                src={pageData.image}
+                alt={pageData.title}
+                fill
+                className="object-cover"
+              />
+            )}
           </div>
 
           <div className="space-y-4">

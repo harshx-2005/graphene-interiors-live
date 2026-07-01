@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Check, Phone, ArrowLeft, Award, Shield, Clock } from "lucide-react";
 import ImageProtected from "@/components/image-protected";
+import VideoProtected from "@/components/video-protected";
 import { openQuoteModal } from "@/components/floating-widget";
 import { FreeQuoteForm } from "@/components/lead-forms";
 
@@ -10,6 +11,7 @@ const servicesData: Record<string, {
   title: string;
   headline: string;
   image: string;
+  video?: string;
   description: string;
   bullets: string[];
   benefits: string[];
@@ -18,6 +20,7 @@ const servicesData: Record<string, {
     title: "Luxury Fitted Kitchens & Renovations Leicester",
     headline: "Bespoke Fitted Kitchens & Complete Kitchen Renovations Built Around Your Lifestyle",
     image: "/images/projects/modern_kitchen_grey.jpg",
+    video: "/videos/Video Project 3.mp4",
     description: "We design, supply, and professionally install premium kitchens tailored to your lifestyle. From handleless gloss-finish cabinet doors and custom-built islands with waterfall quartz worktop edges to complete end-to-end renovations, moving plumbing feeds, Gas Safe certified cooker fittings, and NICEIC certified wiring—our Leicester joinery team handles every minor detail with expert craftsmanship.",
     bullets: [
       "Bespoke layout design incorporating island seating, sink runs, and integrated appliances",
@@ -263,13 +266,23 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             </p>
           </div>
 
-          <div className="relative aspect-video rounded-2xl overflow-hidden border border-accent/25 shadow-xl">
-            <ImageProtected
-              src={service.image}
-              alt={service.title}
-              fill
-              className="object-cover"
-            />
+          <div className="relative aspect-video rounded-2xl overflow-hidden border border-accent/25 shadow-xl bg-primary">
+            {service.video ? (
+              <VideoProtected
+                src={service.video}
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            ) : (
+              <ImageProtected
+                src={service.image}
+                alt={service.title}
+                fill
+                className="object-cover"
+              />
+            )}
           </div>
 
           <div className="space-y-4">
