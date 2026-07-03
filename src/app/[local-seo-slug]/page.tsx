@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Check, Star, Shield, Award, MapPin, Phone, HelpCircle } from "lucide-react";
@@ -148,6 +149,27 @@ export async function generateStaticParams() {
     { "local-seo-slug": "interior-design-leicester" },
     { "local-seo-slug": "custom-furniture-leicester" },
   ];
+}
+
+export async function generateMetadata({ params }: LocalSeoPageProps): Promise<Metadata> {
+  const resolvedParams = await params;
+  const slug = resolvedParams["local-seo-slug"];
+  const pageData = localSeoData[slug];
+
+  if (!pageData) {
+    return {
+      title: "Not Found | Graphene Interiors Ltd",
+    };
+  }
+
+  return {
+    title: pageData.title,
+    description: pageData.aboutText.substring(0, 160) + "...",
+    keywords: pageData.keywords,
+    alternates: {
+      canonical: `https://www.grapheneinteriors.com/${slug}`,
+    },
+  };
 }
 
 export default async function LocalSeoLandingPage({ params }: LocalSeoPageProps) {

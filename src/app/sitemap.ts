@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://grapheneinteriors.co.uk";
+  const baseUrl = "https://www.grapheneinteriors.com";
 
   const staticPaths = [
     "",

@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Check, Phone, ArrowLeft, Award, Shield, Clock } from "lucide-react";
@@ -213,6 +214,26 @@ export async function generateStaticParams() {
     { "service-slug": "custom-designs" },
     { "service-slug": "interior-design" },
   ];
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const resolvedParams = await params;
+  const slug = resolvedParams["service-slug"];
+  const service = servicesData[slug];
+
+  if (!service) {
+    return {
+      title: "Service Not Found | Graphene Interiors Ltd",
+    };
+  }
+
+  return {
+    title: `${service.title} | Graphene Interiors Ltd`,
+    description: service.description.substring(0, 160) + "...",
+    alternates: {
+      canonical: `https://www.grapheneinteriors.com/services/${slug}`,
+    },
+  };
 }
 
 export default async function ServiceDetailPage({ params }: PageProps) {

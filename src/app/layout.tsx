@@ -19,6 +19,10 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.grapheneinteriors.com"),
+  alternates: {
+    canonical: "/",
+  },
   title: "Graphene Interiors Ltd | Luxury Kitchens & Bespoke Fitted Wardrobes Leicester",
   description: "UK-based luxury interiors and renovation company specializing in custom kitchens, wardrobes, sliding wardrobes, media walls, and worktops in Leicester. 15+ years experience. City & Guilds qualified.",
   keywords: [
@@ -36,12 +40,15 @@ export const metadata: Metadata = {
     description: "Transforming houses into beautiful living spaces across Leicester. Bespoke furniture, media walls, kitchens, and interior renovations.",
     type: "website",
     locale: "en_GB",
-    url: "https://grapheneinteriors.co.uk",
+    url: "https://www.grapheneinteriors.com",
   },
   icons: {
     icon: "/images/logo.jpg",
     shortcut: "/images/logo.jpg",
     apple: "/images/logo.jpg",
+  },
+  verification: {
+    google: "ADD_YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_TOKEN_HERE",
   },
 };
 
@@ -72,10 +79,10 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "name": "Graphene Interiors Ltd",
-              "image": "https://grapheneinteriors.co.uk/images/projects/modern_kitchen_beige.jpg",
-              "logo": "https://grapheneinteriors.co.uk/images/logo.png",
-              "@id": "https://grapheneinteriors.co.uk/#localbusiness",
-              "url": "https://grapheneinteriors.co.uk",
+              "image": "https://www.grapheneinteriors.com/images/projects/modern_kitchen_beige.jpg",
+              "logo": "https://www.grapheneinteriors.com/images/logo.png",
+              "@id": "https://www.grapheneinteriors.com/#localbusiness",
+              "url": "https://www.grapheneinteriors.com",
               "telephone": "+447438199369",
               "email": "grapheneinteriors@gmail.com",
               "address": {

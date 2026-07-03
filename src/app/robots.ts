@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: [],
     },
-    sitemap: "https://grapheneinteriors.co.uk/sitemap.xml",
+    sitemap: "https://www.grapheneinteriors.com/sitemap.xml",
   };
 }
