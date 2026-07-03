@@ -23,8 +23,6 @@ type QuoteFormValues = z.infer<typeof quoteFormSchema>;
 export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [photoName, setPhotoName] = useState<string | null>(null);
-  const [photoBase64, setPhotoBase64] = useState<string | null>(null);
   const [whatsappLink, setWhatsappLink] = useState<string>("");
 
   const {
@@ -38,18 +36,6 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
       contactMethod: "phone",
     },
   });
-
-  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setPhotoName(file.name);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPhotoBase64(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const onSubmit = async (data: QuoteFormValues) => {
     setIsSubmitting(true);
@@ -82,8 +68,6 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
 
       setSubmitSuccess(true);
       reset();
-      setPhotoName(null);
-      setPhotoBase64(null);
       if (onSuccess) {
         setTimeout(onSuccess, 5000);
       }
@@ -103,11 +87,6 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
         <p className="text-text-charcoal max-w-sm mb-6 text-sm">
           We have generated your request details. Click the button below to open WhatsApp and send your quote request directly to Arshad.
         </p>
-        {photoName && (
-          <p className="text-xs text-accent font-semibold mb-6 max-w-md bg-accent/10 px-4 py-2.5 rounded-lg border border-accent/20">
-            ★ Note: WhatsApp links do not support automatic file attachment. Please attach your photo "{photoName}" manually in the WhatsApp window when it opens.
-          </p>
-        )}
         <a
           href={whatsappLink}
           target="_blank"
@@ -208,21 +187,7 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
         </div>
       </div>
 
-      <div>
-        <label className="block text-xs font-semibold uppercase tracking-wider text-primary mb-1.5">Project Photos (Optional)</label>
-        <div className="border-2 border-dashed border-gray-200 rounded-lg p-4 flex flex-col items-center justify-center hover:border-accent transition-colors cursor-pointer relative bg-secondary">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handlePhotoChange}
-            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-          />
-          <Upload className="w-6 h-6 text-accent mb-2" />
-          <span className="text-xs text-text-charcoal font-medium">
-            {photoName ? photoName : "Upload reference photo (Max 5MB)"}
-          </span>
-        </div>
-      </div>
+
 
       <div>
         <label className="block text-xs font-semibold uppercase tracking-wider text-primary mb-1.5">Message / Details</label>
