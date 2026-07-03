@@ -103,6 +103,11 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
         <p className="text-text-charcoal max-w-sm mb-6 text-sm">
           We have generated your request details. Click the button below to open WhatsApp and send your quote request directly to Arshad.
         </p>
+        {photoName && (
+          <p className="text-xs text-accent font-semibold mb-6 max-w-md bg-accent/10 px-4 py-2.5 rounded-lg border border-accent/20">
+            ★ Note: WhatsApp links do not support automatic file attachment. Please attach your photo "{photoName}" manually in the WhatsApp window when it opens.
+          </p>
+        )}
         <a
           href={whatsappLink}
           target="_blank"
@@ -200,24 +205,6 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
             placeholder="Leicester, LE5 5LF"
           />
           {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address.message}</p>}
-        </div>
-      </div>
-
-      <div>
-        <label className="block text-xs font-semibold uppercase tracking-wider text-primary mb-1.5">Preferred Contact Method *</label>
-        <div className="flex gap-6 mt-1">
-          <label className="flex items-center space-x-2 text-sm text-text-charcoal cursor-pointer">
-            <input type="radio" value="phone" {...register("contactMethod")} className="accent-accent w-4 h-4" />
-            <span>Call Now</span>
-          </label>
-          <label className="flex items-center space-x-2 text-sm text-text-charcoal cursor-pointer">
-            <input type="radio" value="whatsapp" {...register("contactMethod")} className="accent-accent w-4 h-4" />
-            <span>WhatsApp</span>
-          </label>
-          <label className="flex items-center space-x-2 text-sm text-text-charcoal cursor-pointer">
-            <input type="radio" value="email" {...register("contactMethod")} className="accent-accent w-4 h-4" />
-            <span>Email</span>
-          </label>
         </div>
       </div>
 
@@ -405,24 +392,6 @@ export function ConsultationForm({ onSuccess }: { onSuccess?: () => void }) {
             <option value="evening">Late Afternoon (4:00 PM – 6:00 PM)</option>
           </select>
           {errors.preferredTime && <p className="text-red-500 text-xs mt-1">{errors.preferredTime.message}</p>}
-        </div>
-      </div>
-
-      <div>
-        <label className="block text-xs font-semibold uppercase tracking-wider text-primary mb-1.5">Preferred Contact Method *</label>
-        <div className="flex gap-6 mt-1">
-          <label className="flex items-center space-x-2 text-sm text-text-charcoal cursor-pointer">
-            <input type="radio" value="phone" {...register("contactMethod")} className="accent-accent w-4 h-4" />
-            <span>Call Now</span>
-          </label>
-          <label className="flex items-center space-x-2 text-sm text-text-charcoal cursor-pointer">
-            <input type="radio" value="whatsapp" {...register("contactMethod")} className="accent-accent w-4 h-4" />
-            <span>WhatsApp</span>
-          </label>
-          <label className="flex items-center space-x-2 text-sm text-text-charcoal cursor-pointer">
-            <input type="radio" value="email" {...register("contactMethod")} className="accent-accent w-4 h-4" />
-            <span>Email</span>
-          </label>
         </div>
       </div>
 
