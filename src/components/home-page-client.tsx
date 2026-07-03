@@ -54,7 +54,7 @@ const servicesList = [
   {
     title: "Luxury Kitchens",
     desc: "Bespoke high-end kitchen installations and full renovation transformations, covering plumbing, gas, electrical, and master joinery.",
-    benefits: ["Luxury custom design", "Full renovation & fit", "German soft-close hinges"],
+    benefits: ["Bespoke custom design", "Full renovation & fit", "German soft-close hinges"],
     image: "/images/projects/kitchen_beige_angle3.jpg",
     link: "/portfolio?category=kitchens",
   },
@@ -175,7 +175,7 @@ export default function HomePageClient() {
             >
               <ImageProtected
                 src={heroSlides[currentSlide]}
-                alt="Luxury Interior Showcase"
+                alt="Premium Interior Showcase"
                 fill
                 priority
                 className="object-cover"
@@ -211,7 +211,7 @@ export default function HomePageClient() {
               className="text-sm sm:text-base md:text-xl text-white/95 font-light max-w-3xl mx-auto leading-relaxed"
               style={{ textShadow: "0 2px 10px rgba(0, 0, 0, 0.6)" }}
             >
-              Luxury Kitchens, Bespoke Wardrobes, Media Walls & Full Interior Transformations across Leicester and the Midlands.
+              Premium Kitchens, Bespoke Wardrobes, Media Walls & Full Interior Transformations across Leicester and the Midlands.
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
@@ -292,7 +292,7 @@ export default function HomePageClient() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent block mb-2">Luxury Transformations</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent block mb-2">Premium Transformations</span>
             <h2 className="font-serif text-3xl md:text-5xl font-bold text-primary mb-4">Our Premium Offerings</h2>
             <p className="text-sm text-text-charcoal leading-relaxed font-light">
               We cover everything from individual bespoke units to full kitchen renovations, delivering precision and care in every detail.
@@ -465,7 +465,7 @@ export default function HomePageClient() {
               <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 bg-gradient-to-t from-primary/90 to-transparent">
                 <div>
                   <span className="text-[9px] font-bold tracking-widest text-accent uppercase">Leicester Renovation</span>
-                  <h4 className="font-serif text-white text-lg font-semibold">High-Gloss Beige Luxury Kitchen</h4>
+                  <h4 className="font-serif text-white text-lg font-semibold">High-Gloss Beige Premium Kitchen</h4>
                 </div>
               </div>
             </div>
@@ -622,7 +622,7 @@ export default function HomePageClient() {
                   {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
                 </div>
                 <p className="text-xs text-text-charcoal leading-relaxed font-light mb-4">
-                  "Arshad designed and built a bespoke sliding mirrored wardrobe in our master bedroom. The LED strip work is beautiful and makes the room feel like a luxury boutique hotel."
+                  "Arshad designed and built a bespoke sliding mirrored wardrobe in our master bedroom. The LED strip work is beautiful and makes the room feel like a high-end boutique hotel."
                 </p>
                 <span className="block text-xs font-bold text-primary">S. Patel</span>
                 <span className="text-[10px] text-text-charcoal font-light">LE5 Leicester Customer</span>
@@ -656,7 +656,7 @@ export default function HomePageClient() {
               { num: "01", title: "Home Visit & Consult", desc: "We discuss layouts, take exact measurements, and review catalogs at your house." },
               { num: "02", title: "Detailed 3D Design", desc: "We design a 3D mock representation of your new kitchen cabinets or wardrobes for review." },
               { num: "03", title: "Timber Crafting", desc: "Arshad and the joiners craft your components using quality premium timber materials." },
-              { num: "04", title: "Fitting & Installation", desc: "We fit, test, clean up, and hand over your luxury space, backed by our 5-year guarantee." }
+              { num: "04", title: "Fitting & Installation", desc: "We fit, test, clean up, and hand over your bespoke space, backed by our 5-year guarantee." }
             ].map((step, idx) => (
               <div key={step.num} className="relative bg-secondary border border-gray-150 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                 <span className="absolute top-6 right-6 font-serif text-4xl font-bold text-accent/25">{step.num}</span>

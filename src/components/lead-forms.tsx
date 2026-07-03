@@ -25,6 +25,7 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [photoName, setPhotoName] = useState<string | null>(null);
   const [photoBase64, setPhotoBase64] = useState<string | null>(null);
+  const [whatsappLink, setWhatsappLink] = useState<string>("");
 
   const {
     register,
@@ -53,31 +54,42 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
   const onSubmit = async (data: QuoteFormValues) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...data,
-          formType: "quote",
-          photoName,
-          photoBase64,
-        }),
-      });
+      const serviceName = {
+        kitchens: "Kitchens",
+        bedrooms: "Bedrooms / Wardrobes",
+        "media-walls": "Media Walls",
+        worktops: "Worktops",
+        renovations: "Full Renovations",
+        bespoke: "Bespoke Furniture",
+        "interior-design": "Interior Design"
+      }[data.service] || data.service;
 
-      if (response.ok) {
-        setSubmitSuccess(true);
-        reset();
-        setPhotoName(null);
-        setPhotoBase64(null);
-        if (onSuccess) {
-          setTimeout(onSuccess, 3000);
-        }
-      } else {
-        alert("Something went wrong. Please try again or contact us directly.");
+      const budgetName = {
+        "under-5k": "Under £5,000",
+        "5k-10k": "£5,000 – £10,000",
+        "10k-20k": "£10,000 – £20,000",
+        "20k-35k": "£20,000 – £35,000",
+        "35k-50k": "£35,000 – £50,000",
+        "50k-plus": "£50,000+"
+      }[data.budget] || data.budget;
+
+      const whatsappMsg = `Hi Graphene Interiors,\n\nI would like to request a free quote:\n• Name: ${data.name}\n• Phone: ${data.phone}\n• Email: ${data.email}\n• Service: ${serviceName}\n• Budget: ${budgetName}\n• Location: ${data.address}${data.message ? `\n• Details: ${data.message}` : ""}`;
+      const encodedMsg = encodeURIComponent(whatsappMsg);
+      const link = `https://wa.me/447438199369?text=${encodedMsg}`;
+      
+      setWhatsappLink(link);
+      window.open(link, "_blank");
+
+      setSubmitSuccess(true);
+      reset();
+      setPhotoName(null);
+      setPhotoBase64(null);
+      if (onSuccess) {
+        setTimeout(onSuccess, 5000);
       }
     } catch (err) {
       console.error(err);
-      alert("Error sending message. Please check your connection.");
+      alert("Error preparing WhatsApp message.");
     } finally {
       setIsSubmitting(false);
     }
@@ -87,10 +99,19 @@ export function FreeQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
     return (
       <div className="flex flex-col items-center justify-center py-8 text-center animate-fade-in">
         <CheckCircle className="w-16 h-16 text-accent mb-4" />
-        <h3 className="text-2xl font-serif font-semibold text-primary mb-2">Quote Request Received</h3>
-        <p className="text-text-charcoal max-w-sm">
-          Thank you! Arshad or a member of our team will contact you shortly to discuss your luxury project.
+        <h3 className="text-2xl font-serif font-semibold text-primary mb-2">Ready to Send on WhatsApp</h3>
+        <p className="text-text-charcoal max-w-sm mb-6 text-sm">
+          We have generated your request details. Click the button below to open WhatsApp and send your quote request directly to Arshad.
         </p>
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center space-x-2 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold tracking-widest uppercase px-8 py-4 rounded-lg shadow-md cursor-pointer text-xs transition-colors"
+        >
+          <i className="fa-brands fa-whatsapp text-lg"></i>
+          <span>Send on WhatsApp</span>
+        </a>
       </div>
     );
   }
@@ -260,6 +281,7 @@ type ConsultationFormValues = z.infer<typeof consultationSchema>;
 export function ConsultationForm({ onSuccess }: { onSuccess?: () => void }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [whatsappLink, setWhatsappLink] = useState<string>("");
 
   const {
     register,
@@ -276,27 +298,27 @@ export function ConsultationForm({ onSuccess }: { onSuccess?: () => void }) {
   const onSubmit = async (data: ConsultationFormValues) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...data,
-          formType: "consultation",
-        }),
-      });
+      const timeSlots = {
+        morning: "Morning (9:00 AM – 12:00 PM)",
+        afternoon: "Afternoon (12:00 PM – 4:00 PM)",
+        evening: "Late Afternoon (4:00 PM – 6:00 PM)"
+      }[data.preferredTime] || data.preferredTime;
 
-      if (response.ok) {
-        setSubmitSuccess(true);
-        reset();
-        if (onSuccess) {
-          setTimeout(onSuccess, 3000);
-        }
-      } else {
-        alert("Something went wrong. Please try again.");
+      const whatsappMsg = `Hi Graphene Interiors,\n\nI would like to book a free consultation:\n• Name: ${data.name}\n• Phone: ${data.phone}\n• Email: ${data.email}\n• Preferred Date: ${data.preferredDate}\n• Preferred Time: ${timeSlots}${data.message ? `\n• Notes: ${data.message}` : ""}`;
+      const encodedMsg = encodeURIComponent(whatsappMsg);
+      const link = `https://wa.me/447438199369?text=${encodedMsg}`;
+
+      setWhatsappLink(link);
+      window.open(link, "_blank");
+
+      setSubmitSuccess(true);
+      reset();
+      if (onSuccess) {
+        setTimeout(onSuccess, 5000);
       }
     } catch (err) {
       console.error(err);
-      alert("Error sending message. Please try again.");
+      alert("Error preparing WhatsApp message.");
     } finally {
       setIsSubmitting(false);
     }
@@ -306,10 +328,19 @@ export function ConsultationForm({ onSuccess }: { onSuccess?: () => void }) {
     return (
       <div className="flex flex-col items-center justify-center py-8 text-center animate-fade-in">
         <CheckCircle className="w-16 h-16 text-accent mb-4" />
-        <h3 className="text-2xl font-serif font-semibold text-primary mb-2">Consultation Booked</h3>
-        <p className="text-text-charcoal max-w-sm">
-          Your free design consultation has been requested. We will confirm your appointment details via your selected contact method.
+        <h3 className="text-2xl font-serif font-semibold text-primary mb-2">Ready to Book on WhatsApp</h3>
+        <p className="text-text-charcoal max-w-sm mb-6 text-sm">
+          We have generated your consultation details. Click the button below to open WhatsApp and send your booking details directly to Arshad.
         </p>
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center space-x-2 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold tracking-widest uppercase px-8 py-4 rounded-lg shadow-md cursor-pointer text-xs transition-colors"
+        >
+          <i className="fa-brands fa-whatsapp text-lg"></i>
+          <span>Send Booking on WhatsApp</span>
+        </a>
       </div>
     );
   }

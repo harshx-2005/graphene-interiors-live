@@ -19,7 +19,7 @@ const portfolioCategories = [
 const projectsData = [
   {
     id: 0,
-    title: "Luxury Gloss Beige Kitchen",
+    title: "Premium Gloss Beige Kitchen",
     category: ["kitchens", "worktops"],
     desc: "Leicester high-gloss kitchen with a massive waterfall quartz island, custom ceiling-recessed hood, and matching marble-look polished tiling.",
     image: "/images/projects/modern_kitchen_beige.jpg",
@@ -45,7 +45,7 @@ const projectsData = [
     id: 3,
     title: "Master Bedroom Dressing Suite",
     category: ["wardrobes", "interiors"],
-    desc: "Luxury fitted bedroom shaker wardrobes wrapped around a dedicated center makeup vanity table with warm backlit shelving.",
+    desc: "Bespoke fitted bedroom shaker wardrobes wrapped around a dedicated center makeup vanity table with warm backlit shelving.",
     image: "/images/projects/fitted_wardrobe_desk.jpg",
     details: "Muted beige shaker doors, warm showcase LED strips, integrated drawers.",
   },
@@ -59,7 +59,7 @@ const projectsData = [
   },
   {
     id: 5,
-    title: "Luxury Beige Kitchen (Window View)",
+    title: "Bespoke Beige Kitchen (Window View)",
     category: ["kitchens", "worktops"],
     desc: "Detailed window-side view of our bespoke beige kitchen, highlighting double sink fittings and layout integration.",
     image: "/images/projects/kitchen_beige_angle2.jpg",
@@ -67,7 +67,7 @@ const projectsData = [
   },
   {
     id: 6,
-    title: "Luxury Beige Kitchen (Profile View)",
+    title: "Refined Beige Kitchen (Profile View)",
     category: ["kitchens", "worktops"],
     desc: "Profile view of custom gloss beige cabinetry highlighting seamless handleless profiles and polished marble floors.",
     image: "/images/projects/kitchen_beige_angle3.jpg",
@@ -99,7 +99,7 @@ const projectsData = [
   },
   {
     id: 10,
-    title: "Luxury Grey Kitchen (Renovation)",
+    title: "Sophisticated Grey Kitchen (Renovation)",
     category: ["kitchens", "worktops", "interiors"],
     desc: "Modern high-gloss grey kitchen setup featuring matching quartz backsplash, drop-in gas stove, and ceiling spotlights.",
     image: "/images/projects/kitchen_grey_angle2.jpg",
@@ -117,7 +117,7 @@ const projectsData = [
     id: 12,
     title: "Master Bedroom Suite Design",
     category: ["wardrobes", "interiors"],
-    desc: "Luxury master bedroom fitout incorporating black sliding wardrobes and vertical wall paneling framing a velvet tufted bed.",
+    desc: "Elegant master bedroom fitout incorporating black sliding wardrobes and vertical wall paneling framing a velvet tufted bed.",
     image: "/images/projects/bedroom_master_suite.jpg",
     details: "Velvet tufted headboard, backlit marble panels, vertical slat features.",
   },
@@ -131,7 +131,7 @@ const projectsData = [
   },
   {
     id: 14,
-    title: "Luxury Wood Slat Media Wall",
+    title: "Premium Wood Slat Media Wall",
     category: ["media-walls", "interiors"],
     desc: "State-of-the-art living room media wall featuring vertical walnut slats, a linear fireplace heater, and grey marble-look backing.",
     image: "/images/projects/media_wall_woodslat.jpg",
@@ -139,7 +139,7 @@ const projectsData = [
   },
   {
     id: 15,
-    title: "Luxury Beige Kitchen (Dual Seating)",
+    title: "Exclusive Beige Kitchen (Dual Seating)",
     category: ["kitchens", "worktops"],
     desc: "Beige gloss kitchen island looking towards double bar stools, displaying matching marble splashbacks and linear LED channels.",
     image: "/images/projects/kitchen_beige_stools.jpg",
@@ -195,7 +195,7 @@ const projectsData = [
   },
   {
     id: 22,
-    title: "Luxury Slat Wall (Full Elevation)",
+    title: "Refined Slat Wall (Full Elevation)",
     category: ["media-walls", "interiors"],
     desc: "Full wall view of the linear electric fireplace and wood slat media wall, showcasing floor coordinates and side shelves.",
     image: "/images/projects/media_wall_woodslat_full.jpg",
