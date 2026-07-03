@@ -179,7 +179,7 @@ const projectsData = [
   },
   {
     id: 20,
-    title: "Beige Kitchen Island (Detail View)",
+    title: "Modern Kitchen Island (Detail View)",
     category: ["kitchens", "worktops"],
     desc: "Macro layout detail of kitchen quartz worktops, handless cabinets, and built-in drawer runs.",
     image: "/images/projects/kitchen_beige_close.jpg",
