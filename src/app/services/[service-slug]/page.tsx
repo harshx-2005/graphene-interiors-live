@@ -143,11 +143,11 @@ const servicesData: Record<string, {
   },
   "bespoke-furniture": {
     title: "Bespoke Furniture Leicester",
-    headline: "Hand-Crafted Cabinets & Unique Timber Joinery",
+    headline: "Hand-Crafted Cabinets & Unique Joinery",
     image: "/images/projects/fitted_wardrobe_desk.jpg",
     description: "Looking for a unique piece of furniture? We craft bespoke items in our Leicester joinery workshop including shoe organizer bench seating, floating alcove drawers, vanity desks, and custom console units.",
     bullets: [
-      "Solid timber and high-density fiberboard construction",
+      "Solid and high-density fiberboard construction",
       "Sprayed with durable professional lacquered paint colors",
       "Custom size configurations fitting irregular corners",
       "Concealed soft-close hardware on all doors and drawers"
@@ -281,7 +281,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <div className="lg:col-span-7 space-y-8">
           
           <div className="space-y-4">
-            <h2 className="font-serif text-2xl md:text-3xl font-bold text-primary">Luxury Supply & Fit Solutions</h2>
+            <h2 className="font-serif text-2xl md:text-3xl font-bold text-primary">Premium Supply & Fit Solutions</h2>
             <p className="text-sm font-light leading-relaxed text-text-charcoal">
               {service.description}
             </p>
