@@ -147,7 +147,7 @@ const faqs = [
 export default function HomePageClient() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [sliderCategory, setSliderCategory] = useState<"kitchen" | "wardrobe">("kitchen");
+  const [sliderCategory, setSliderCategory] = useState<"kitchen" | "kitchen-beige" | "wardrobe">("kitchen");
 
   // Hero Background Slideshow
   useEffect(() => {
@@ -504,14 +504,22 @@ export default function HomePageClient() {
             </p>
             
             {/* Category Selector Tabs */}
-            <div className="inline-flex bg-white p-1.5 rounded-xl border border-gray-150 shadow-sm mt-8">
+            <div className="inline-flex flex-wrap justify-center gap-1 bg-white p-1.5 rounded-xl border border-gray-150 shadow-sm mt-8">
               <button
                 onClick={() => setSliderCategory("kitchen")}
                 className={`px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
                   sliderCategory === "kitchen" ? "bg-primary text-white" : "text-text-charcoal hover:bg-gray-50"
                 }`}
               >
-                Kitchen Renovation
+                White & Gold Kitchen
+              </button>
+              <button
+                onClick={() => setSliderCategory("kitchen-beige")}
+                className={`px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  sliderCategory === "kitchen-beige" ? "bg-primary text-white" : "text-text-charcoal hover:bg-gray-50"
+                }`}
+              >
+                Beige & Marble Kitchen
               </button>
               <button
                 onClick={() => setSliderCategory("wardrobe")}
@@ -525,17 +533,26 @@ export default function HomePageClient() {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            {sliderCategory === "kitchen" ? (
+            {sliderCategory === "kitchen" && (
               <BeforeAfterSlider
                 beforeImage="/images/projects/before_kitchen_renovation.jpg"
                 afterImage="/images/projects/after_kitchen_renovation.jpg"
                 beforeAlt="Raw kitchen space during renovation with exposed brickwork"
                 afterAlt="Luxurious white gloss kitchen with gold profiles and dark marble worktops"
               />
-            ) : (
+            )}
+            {sliderCategory === "kitchen-beige" && (
+              <BeforeAfterSlider
+                beforeImage="/images/projects/before_kitchen_renovation_2.jpg"
+                afterImage="/images/projects/after_kitchen_renovation_2.jpg"
+                beforeAlt="Cluttered and outdated kitchen before renovation"
+                afterAlt="Modern light beige handleless kitchen with marble splashbacks and light tiled floor"
+              />
+            )}
+            {sliderCategory === "wardrobe" && (
               <BeforeAfterSlider
                 beforeImage="/images/projects/before_understairs.jpg"
-                afterImage="/projects/before_understairs.jpg"
+                afterImage="/images/projects/after_understairs.jpg"
                 beforeAlt="Empty under-stairs cavity under construction"
                 afterAlt="Bespoke fitted oak under-stairs storage drawers and cabinets"
               />
