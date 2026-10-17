@@ -24,11 +24,26 @@ const serviceLinks = [
   { name: "Interior Design", href: "/services/interior-design" },
 ];
 
-export default function Navbar() {
+export default function Navbar({
+  services,
+  settings,
+  contact,
+}: {
+  services?: any[];
+  settings?: any;
+  contact?: any;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [servicesDropdown, setServicesDropdown] = useState(false);
   const pathname = usePathname();
+
+  const displayServices = services && services.length > 0
+    ? services.map((s) => ({ name: s.title, href: `/services/${s.slug}` }))
+    : serviceLinks;
+
+  const displayLogo = settings?.logoUrl || "/images/logo.png";
+  const displayPhone = contact?.phone || "+44 7438 199369";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,6 +62,8 @@ export default function Navbar() {
     setIsOpen(false);
   }, [pathname]);
 
+  if (pathname.startsWith("/admin")) return null;
+
   return (
     <>
       <header
@@ -60,7 +77,7 @@ export default function Navbar() {
               onContextMenu={(e) => e.preventDefault()}
             >
               <img
-                src="/images/logo.png"
+                src={displayLogo}
                 alt="Graphene Interiors Logo Icon"
                 className="w-full h-full object-contain pointer-events-none select-none no-save-image"
                 draggable={false}
@@ -121,7 +138,7 @@ export default function Navbar() {
                     exit={{ opacity: 0, y: 10 }}
                     className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-primary border border-accent/25 rounded-2xl shadow-2xl p-4 glass-panel-dark grid grid-cols-1 gap-1"
                   >
-                    {serviceLinks.map((service) => (
+                    {displayServices.map((service) => (
                       <Link
                         key={service.name}
                         href={service.href}
@@ -167,11 +184,11 @@ export default function Navbar() {
           {/* Desktop Right CTAs */}
           <div className="hidden lg:flex items-center space-x-6">
             <a 
-              href="tel:+447438199369"
+              href={`tel:${displayPhone.replace(/\s+/g, "")}`}
               className="flex items-center space-x-2 text-sm text-gray-300 hover:text-accent transition-colors font-medium font-sans"
             >
               <i className="fa-solid fa-phone text-accent animate-pulse"></i>
-              <span>+44 7438 199369</span>
+              <span>{displayPhone}</span>
             </a>
             
             <button
@@ -221,7 +238,7 @@ export default function Navbar() {
                   Our Luxury Services
                 </span>
                 <div className="grid grid-cols-2 gap-2 text-center text-sm font-sans text-gray-400">
-                  {serviceLinks.map((service) => (
+                  {displayServices.map((service) => (
                     <Link key={service.name} href={service.href} className="hover:text-white py-1">
                       {service.name}
                     </Link>
@@ -245,11 +262,11 @@ export default function Navbar() {
 
             <div className="mt-auto mb-12 flex flex-col items-center space-y-4">
               <a 
-                href="tel:+447438199369"
+                href={`tel:${displayPhone.replace(/\s+/g, "")}`}
                 className="flex items-center space-x-2 text-lg text-white font-medium"
               >
                 <i className="fa-solid fa-phone text-accent"></i>
-                <span>+44 7438 199369</span>
+                <span>{displayPhone}</span>
               </a>
               <button
                 onClick={() => {

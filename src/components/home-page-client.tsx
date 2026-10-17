@@ -144,47 +144,133 @@ const faqs = [
   }
 ];
 
-export default function HomePageClient() {
+export default function HomePageClient({
+  initialData,
+  services,
+  faqs: dbFaqs,
+  testimonials: dbTestimonials,
+  contactInfo,
+}: {
+  initialData?: any;
+  services?: any[];
+  faqs?: any[];
+  testimonials?: any[];
+  contactInfo?: any;
+}) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [sliderCategory, setSliderCategory] = useState<"kitchen" | "kitchen-beige" | "wardrobe">("kitchen");
 
+  // Dynamic values
+  const slides = (() => {
+    if (!initialData?.heroBackgroundImage) return heroSlides;
+    try {
+      if (initialData.heroBackgroundImage.startsWith("[")) {
+        const arr = JSON.parse(initialData.heroBackgroundImage);
+        if (Array.isArray(arr) && arr.length > 0) return arr;
+      }
+    } catch(e) {}
+    return [initialData.heroBackgroundImage];
+  })();
+
+  const safeCurrentSlide = currentSlide >= slides.length ? 0 : currentSlide;
+
+  const displayServices = services && services.length > 0
+    ? services.map((s) => ({
+        title: s.title,
+        desc: s.shortDescription,
+        benefits: (() => {
+          try { return JSON.parse(s.benefitsJson); } catch(e) { return []; }
+        })(),
+        image: s.image,
+        link: `/services/${s.slug}`,
+      }))
+    : servicesList;
+
+  const displayFaqs = dbFaqs && dbFaqs.length > 0
+    ? dbFaqs.map((f) => ({
+        q: f.question,
+        a: f.answer,
+      }))
+    : faqs;
+
+  const displayTestimonials = dbTestimonials && dbTestimonials.length > 0
+    ? dbTestimonials
+    : [
+        {
+          clientName: "Verified Leicester Customer",
+          position: "Leicester (Kitchen Supply & Fitout)",
+          review: "I recently had my kitchen supplied and fitted by Graphene Kitchens, and I could not be more pleased with the experience. Arshad was exceptionally helpful, professional, and attentive throughout the entire process. He ensured that our vision was fully understood and brought to life seamlessly, without any issues along the way. The quality of both the service and the final result exceeded our expectations. What stood out most was the outstanding value for money.",
+          rating: 5,
+        },
+        {
+          clientName: "S. Patel",
+          position: "LE5 Leicester Customer",
+          review: "Arshad designed and built a bespoke sliding mirrored wardrobe in our master bedroom. The LED strip work is beautiful and makes the room feel like a high-end boutique hotel.",
+          rating: 5,
+        },
+        {
+          clientName: "David L.",
+          position: "Leicester Forest East Customer",
+          review: "The media wall built by Graphene is perfect. Cable management is fully hidden and the linear fireplace look is amazing. Exceptional carpentry work.",
+          rating: 5,
+        }
+      ];
+
+  const featuredReview = displayTestimonials[0];
+  const sideReviews = displayTestimonials.slice(1, 3);
+
   // Hero Background Slideshow
   useEffect(() => {
+    if (slides.length <= 1) return;
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [JSON.stringify(slides)]);
 
   return (
     <div className="relative">
       
       {/* 1. HERO SECTION */}
       <section className="relative min-h-[calc(100vh-73px)] md:h-[92vh] flex items-center justify-center overflow-hidden bg-primary py-12 md:py-0">
-        {/* Slideshow Images */}
-        <div className="absolute inset-0 z-0">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSlide}
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 0.75, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5 }}
-              className="relative w-full h-full"
-            >
-              <ImageProtected
-                src={heroSlides[currentSlide]}
-                alt="Premium Interior Showcase"
-                fill
-                priority
-                className="object-cover"
-              />
-            </motion.div>
-          </AnimatePresence>
-          {/* Ambient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/60 z-[1]" />
-        </div>
+        
+        {initialData?.heroBackgroundType === "video" && initialData?.heroBackgroundVideo ? (
+          <div className="absolute inset-0 z-0">
+            <video
+              src={initialData.heroBackgroundVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover opacity-75"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/60 z-[1]" />
+          </div>
+        ) : (
+          /* Slideshow Images */
+          <div className="absolute inset-0 z-0">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={safeCurrentSlide}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 0.75, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.5 }}
+                className="relative w-full h-full"
+              >
+                <ImageProtected
+                  src={slides[safeCurrentSlide] || "/images/projects/hero_wood_kitchen.jpg"}
+                  alt="Premium Interior Showcase"
+                  fill
+                  priority
+                  className="object-cover"
+                />
+              </motion.div>
+            </AnimatePresence>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/60 z-[1]" />
+          </div>
+        )}
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white pb-24 md:pb-0">
@@ -196,22 +282,31 @@ export default function HomePageClient() {
           >
             <span className="inline-flex items-center space-x-2 bg-accent/20 border border-accent/30 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-accent mb-2">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Leicester's Master Joiners</span>
+              <span>{initialData?.heroSubtitle || "Leicester's Master Joiners"}</span>
             </span>
 
             <h1 
               className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
               style={{ textShadow: "0 4px 18px rgba(0, 0, 0, 0.65)" }}
             >
-              Transforming Houses Into <br className="hidden md:inline" />
-              <span className="text-accent">Beautiful Living Spaces</span>
+              {initialData?.heroTitle ? (
+                <>
+                  {initialData.heroTitle.split("Into")[0]} Into <br className="hidden md:inline" />
+                  <span className="text-accent">{initialData.heroTitle.split("Into")[1] || "Beautiful Living Spaces"}</span>
+                </>
+              ) : (
+                <>
+                  Transforming Houses Into <br className="hidden md:inline" />
+                  <span className="text-accent">Beautiful Living Spaces</span>
+                </>
+              )}
             </h1>
 
             <p 
               className="text-sm sm:text-base md:text-xl text-white/95 font-light max-w-3xl mx-auto leading-relaxed"
               style={{ textShadow: "0 2px 10px rgba(0, 0, 0, 0.6)" }}
             >
-              Premium Kitchens, Bespoke Wardrobes, Media Walls & Full Interior Transformations across Leicester and the Midlands.
+              {initialData?.heroDescription || "Premium Kitchens, Bespoke Wardrobes, Media Walls & Full Interior Transformations across Leicester and the Midlands."}
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
@@ -223,11 +318,11 @@ export default function HomePageClient() {
               </button>
               
               <a
-                href="tel:+447438199369"
+                href={`tel:${contactInfo?.phone?.replace(/\s+/g, "") || "+447438199369"}`}
                 className="w-full sm:w-auto bg-primary/80 hover:bg-primary text-white border border-white/20 font-bold tracking-widest uppercase px-8 py-4 rounded-lg shadow-xl flex items-center justify-center space-x-2.5 transition-transform hover:-translate-y-0.5"
               >
                 <Phone className="w-4 h-4 text-accent animate-pulse" />
-                <span>Call +44 7438 199369</span>
+                <span>Call {contactInfo?.phone || "+44 7438 199369"}</span>
               </a>
             </div>
           </motion.div>
@@ -300,7 +395,7 @@ export default function HomePageClient() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {servicesList.map((service, index) => (
+            {displayServices.map((service: any, index: number) => (
               <motion.div
                 key={service.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -325,7 +420,7 @@ export default function HomePageClient() {
                       <p className="text-sm text-text-charcoal leading-relaxed font-light">{service.desc}</p>
                       
                       <ul className="space-y-1.5 pt-2">
-                        {service.benefits.map((b) => (
+                        {service.benefits.map((b: string) => (
                           <li key={b} className="flex items-center space-x-2 text-xs text-text-charcoal font-medium">
                             <Check className="w-4 h-4 text-accent" />
                             <span>{b}</span>
@@ -617,44 +712,35 @@ export default function HomePageClient() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Featured Review */}
-            <div className="lg:col-span-2 bg-white border border-accent/25 rounded-3xl p-8 md:p-12 shadow-md relative">
-              <div className="flex text-accent space-x-1 mb-6">
-                {[...Array(5)].map((_, i) => <Star key={i} className="w-6 h-6 fill-current" />)}
+            {featuredReview && (
+              <div className="lg:col-span-2 bg-white border border-accent/25 rounded-3xl p-8 md:p-12 shadow-md relative">
+                <div className="flex text-accent space-x-1 mb-6">
+                  {[...Array(featuredReview.rating)].map((_, i) => <Star key={i} className="w-6 h-6 fill-current" />)}
+                </div>
+                <p className="font-serif text-lg md:text-xl text-primary italic leading-relaxed mb-6 font-light">
+                  "{featuredReview.review}"
+                </p>
+                <div>
+                  <span className="block font-serif text-base font-bold text-primary">{featuredReview.clientName}</span>
+                  <span className="text-xs text-text-charcoal font-light">{featuredReview.position}</span>
+                </div>
               </div>
-              <p className="font-serif text-lg md:text-xl text-primary italic leading-relaxed mb-6 font-light">
-                "I recently had my kitchen supplied and fitted by Graphene Kitchens, and I could not be more pleased with the experience. Arshad was exceptionally helpful, professional, and attentive** throughout the entire process. He ensured that our vision was fully understood and brought to life seamlessly, without any issues along the way.
-
-                The quality of both the service and the final result exceeded our expectations. What stood out most was the outstanding value for money."
-              </p>
-              <div>
-                <span className="block font-serif text-base font-bold text-primary">Verified Leicester Customer</span>
-                <span className="text-xs text-text-charcoal font-light">Leicester (Kitchen Supply & Fitout)</span>
-              </div>
-            </div>
+            )}
 
             {/* Additional Reviews */}
             <div className="space-y-8 flex flex-col justify-between">
-              <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm">
-                <div className="flex text-accent space-x-1 mb-3">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+              {sideReviews.map((t: any, i: number) => (
+                <div key={i} className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm">
+                  <div className="flex text-accent space-x-1 mb-3">
+                    {[...Array(t.rating)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                  </div>
+                  <p className="text-xs text-text-charcoal leading-relaxed font-light mb-4">
+                    "{t.review}"
+                  </p>
+                  <span className="block text-xs font-bold text-primary">{t.clientName}</span>
+                  <span className="text-[10px] text-text-charcoal font-light">{t.position}</span>
                 </div>
-                <p className="text-xs text-text-charcoal leading-relaxed font-light mb-4">
-                  "Arshad designed and built a bespoke sliding mirrored wardrobe in our master bedroom. The LED strip work is beautiful and makes the room feel like a high-end boutique hotel."
-                </p>
-                <span className="block text-xs font-bold text-primary">S. Patel</span>
-                <span className="text-[10px] text-text-charcoal font-light">LE5 Leicester Customer</span>
-              </div>
-
-              <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm">
-                <div className="flex text-accent space-x-1 mb-3">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
-                </div>
-                <p className="text-xs text-text-charcoal leading-relaxed font-light mb-4">
-                  "The media wall built by Graphene is perfect. Cable management is fully hidden and the linear fireplace look is amazing. Exceptional carpentry work."
-                </p>
-                <span className="block text-xs font-bold text-primary">David L.</span>
-                <span className="text-[10px] text-text-charcoal font-light">Leicester Forest East Customer</span>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -694,7 +780,7 @@ export default function HomePageClient() {
           </div>
 
           <div className="space-y-4">
-            {faqs.map((faq, index) => {
+            {displayFaqs.map((faq: any, index: number) => {
               const isOpen = activeFaq === index;
               return (
                 <div 
@@ -744,23 +830,32 @@ export default function HomePageClient() {
             <div className="space-y-6">
               <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent block">Start Your Project</span>
               <h2 className="font-serif text-3xl md:text-5xl font-bold text-primary leading-tight">
-                Let's Build Your <br />Dream Home Interiors
+                {initialData?.ctaTitle ? (
+                  <>
+                    {initialData.ctaTitle.split("Your")[0]} Your <br />
+                    {initialData.ctaTitle.split("Your")[1] || "Dream Home Interiors"}
+                  </>
+                ) : (
+                  <>
+                    Let's Build Your <br />Dream Home Interiors
+                  </>
+                )}
               </h2>
               <p className="text-sm text-text-charcoal font-light leading-relaxed">
-                Book your free design visit or consult with Arshad today. Our Leicester joinery shop constructs bespoke units designed around you.
+                {initialData?.ctaDescription || "Book your free design visit or consult with Arshad today. Our Leicester joinery shop constructs bespoke units designed around you."}
               </p>
 
               <div className="space-y-4 pt-4">
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                   <span className="text-xs text-text-charcoal">
-                    Office / Joinery Shop: 48 Chesterfield Road, Leicester, LE5 5LF
+                    Office / Joinery Shop: {contactInfo?.address || "48 Chesterfield Road, Leicester, LE5 5LF"}
                   </span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <Phone className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                   <span className="text-xs text-text-charcoal">
-                    Direct Carpentry Hot line: +44 7438 199369
+                    Direct Carpentry Hot line: {contactInfo?.phone || "+44 7438 199369"}
                   </span>
                 </div>
               </div>

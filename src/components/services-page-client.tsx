@@ -79,7 +79,19 @@ const allServices = [
   },
 ];
 
-export default function ServicesPageClient() {
+export default function ServicesPageClient({ services }: { services?: any[] }) {
+  const displayServices = services && services.length > 0
+    ? services.map((s) => ({
+        slug: s.slug,
+        title: s.title,
+        desc: s.shortDescription,
+        benefits: (() => {
+          try { return JSON.parse(s.benefitsJson); } catch(e) { return []; }
+        })(),
+        image: s.image,
+      }))
+    : allServices;
+
   return (
     <div className="relative font-sans text-text-charcoal bg-white min-h-screen">
       
@@ -97,7 +109,7 @@ export default function ServicesPageClient() {
       {/* Services List Grid */}
       <section className="py-20 max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allServices.map((service) => (
+          {displayServices.map((service) => (
             <div
               key={service.slug}
               className="bg-secondary border border-gray-150 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"

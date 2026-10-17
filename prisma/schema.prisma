@@ -1,0 +1,158 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL") // Neon pooled connection (host contains "-pooler")
+  directUrl = env("DIRECT_URL")   // Neon direct connection, used by prisma migrate
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  passwordHash String
+  sessions     Session[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Session {
+  id        String   @id
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model HomepageContent {
+  id                  String   @id @default("default")
+  heroTitle           String
+  heroSubtitle        String
+  heroDescription     String
+  heroBackgroundType  String   // "image" | "video"
+  heroBackgroundImage String
+  heroBackgroundVideo String
+  statsJson           String   // JSON array of stats
+  featuresJson        String   // JSON array of features
+  ctaTitle            String
+  ctaDescription      String
+  updatedAt           DateTime @updatedAt
+}
+
+model AboutContent {
+  id               String   @id @default("default")
+  heading          String
+  description      String
+  imagesJson       String   // JSON array of image URLs
+  videosJson       String   // JSON array of video URLs
+  achievementsJson String   // JSON array of achievements
+  mission          String
+  vision           String
+  updatedAt        DateTime @updatedAt
+}
+
+model Service {
+  id               Int      @id @default(autoincrement())
+  title            String
+  slug             String   @unique
+  headline         String
+  description      String
+  shortDescription String
+  image            String
+  galleryJson      String   // JSON array of image URLs
+  video            String?
+  seoTitle         String
+  seoDescription   String
+  isVisible        Boolean  @default(true)
+  order            Int      @default(0)
+  bulletsJson      String   // JSON array of strings
+  benefitsJson     String   // JSON array of strings
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model PortfolioProject {
+  id               Int      @id @default(autoincrement())
+  projectName      String
+  categoryJson     String   // JSON array of category strings (e.g. ["kitchens", "worktops"])
+  location         String
+  description      String
+  beforeImagesJson String   // JSON array of image URLs
+  afterImagesJson  String   // JSON array of image URLs
+  videosJson       String   // JSON array of video URLs
+  completionDate   String
+  isFeatured       Boolean  @default(false)
+  order            Int      @default(0)
+  details          String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model GalleryItem {
+  id        Int      @id @default(autoincrement())
+  url       String
+  type      String   // "IMAGE" | "VIDEO"
+  category  String   // e.g. "kitchens", "wardrobes"
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Testimonial {
+  id         Int      @id @default(autoincrement())
+  clientName String
+  position   String
+  review     String
+  rating     Int      @default(5)
+  image      String?
+  order      Int      @default(0)
+  isVisible  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+}
+
+model Faq {
+  id        Int      @id @default(autoincrement())
+  question  String
+  answer    String
+  order     Int      @default(0)
+  isVisible Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model ContactInfo {
+  id                 String   @id @default("default")
+  businessName       String
+  phone              String
+  email              String
+  whatsApp           String
+  address            String
+  googleMapsEmbedUrl String
+  googleMapsLink     String
+  openingHoursJson   String   // JSON structure
+  socialLinksJson    String   // JSON structure
+  updatedAt          DateTime @updatedAt
+}
+
+model SeoSettings {
+  id           String   @id @default("default")
+  title        String
+  description  String
+  keywords     String
+  canonical    String
+  ogImage      String
+  robots       String
+  schemaJsonLd String
+  sitemap      String?
+  robotsTxt    String?
+  updatedAt    DateTime @updatedAt
+}
+
+model WebsiteSettings {
+  id                String   @id @default("default")
+  logoUrl           String
+  faviconUrl        String
+  footerCopyright   String
+  themeSettingsJson String   // JSON theme styling tokens
+  analyticsId       String?
+  updatedAt         DateTime @updatedAt
+}

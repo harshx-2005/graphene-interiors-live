@@ -2,8 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function PageLoader() {
+  const pathname = usePathname();
+
   const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
@@ -41,6 +44,8 @@ export default function PageLoader() {
       document.body.style.overflow = "unset";
     };
   }, []);
+
+  if (pathname.startsWith("/admin")) return null;
 
   return (
     <AnimatePresence>

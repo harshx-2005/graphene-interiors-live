@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
+import { db } from "@/lib/db";
 import ContactPageClient from "@/components/contact-page-client";
 
-export const metadata: Metadata = {
-  title: "Contact Us | Graphene Interiors | Leicester Office",
-  description: "Get in touch with Graphene Interiors Ltd. Call +44 7438 199369 or book a free in-home kitchen and bedroom design consultation in Leicester.",
-  alternates: {
-    canonical: "https://www.grapheneinteriors.com/contact",
-  },
-};
+export const revalidate = 0; // Disable page server cache for dynamic updates
 
-export default function Page() {
-  return <ContactPageClient />;
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await db.seoSettings.findFirst();
+  return {
+    title: `Contact Us | ${seo?.title || "Graphene Interiors"}`,
+    description: seo?.description || "Get in touch with Graphene Interiors Ltd. Call or book a free in-home kitchen and bedroom design consultation in Leicester.",
+  };
+}
+
+export default async function Page() {
+  const contact = await db.contactInfo.findFirst();
+
+  return <ContactPageClient contactData={contact || undefined} />;
 }

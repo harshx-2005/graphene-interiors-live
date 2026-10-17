@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { openQuoteModal } from "./floating-widget";
+import { usePathname } from "next/navigation";
 
 const servicesList = [
   { name: "Luxury Kitchens", href: "/services/kitchens" },
@@ -26,8 +27,44 @@ const seoPagesList = [
   { name: "Custom Furniture Leicester", href: "/custom-furniture-leicester" },
 ];
 
-export default function Footer() {
+export default function Footer({
+  services,
+  settings,
+  contact,
+}: {
+  services?: any[];
+  settings?: any;
+  contact?: any;
+}) {
+  const pathname = usePathname();
+  if (pathname.startsWith("/admin")) return null;
+
   const currentYear = new Date().getFullYear();
+
+  const displayServices = services && services.length > 0
+    ? services.map((s) => ({ name: s.title, href: `/services/${s.slug}` }))
+    : servicesList;
+
+  const displayLogo = settings?.logoUrl || "/images/logo.png";
+  const displayPhone = contact?.phone || "+44 7438 199369";
+  const displayEmail = contact?.email || "grapheneinteriors@gmail.com";
+  const displayAddress = contact?.address || "48 Chesterfield Road, Leicester, LE5 5LF";
+  
+  const displayHours = contact?.openingHoursJson
+    ? (() => {
+        try {
+          const arr = JSON.parse(contact.openingHoursJson);
+          return arr.map((h: any) => `${h.day}: ${h.hours}`).join(" | ");
+        } catch(e) {
+          return "Monday – Saturday: 9:00 AM – 6:00 PM | Sunday: Closed";
+        }
+      })()
+    : "Monday – Saturday: 9:00 AM – 6:00 PM | Sunday: Closed";
+
+  const displayCopyright = settings?.footerCopyright || `© ${currentYear} Graphene Interiors Ltd. All Rights Reserved. Company Registered in UK (2024).`;
+  
+  const mapsEmbed = contact?.googleMapsEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2404.1485699479374!2d-1.0970365842880796!3d52.63750057983693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48776101c5f3e9c7%3A0xe54d3bf9cbb87b1e!2s48%20Chesterfield%20Rd%2C%20Leicester%20LE5%205LF%2C%20UK!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk";
+  const mapsLink = contact?.googleMapsLink || "https://maps.app.goo.gl/XA3LVLXqt3mLuN7A6";
 
   return (
     <footer className="bg-primary text-gray-300 border-t border-accent/20 pt-16 pb-8 font-sans">
@@ -41,7 +78,7 @@ export default function Footer() {
               onContextMenu={(e) => e.preventDefault()}
             >
               <img
-                src="/images/logo.png"
+                src={displayLogo}
                 alt="Graphene Interiors Logo Icon"
                 className="w-full h-full object-contain pointer-events-none select-none no-save-image"
                 draggable={false}
@@ -78,7 +115,7 @@ export default function Footer() {
             Our Services
           </h4>
           <ul className="grid grid-cols-1 gap-2.5 text-sm">
-            {servicesList.map((service) => (
+            {displayServices.map((service) => (
               <li key={service.name}>
                 <Link
                   href={service.href}
@@ -99,23 +136,25 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3.5 text-sm">
               <li>
-                <a href="tel:+447438199369" className="flex items-start space-x-3 hover:text-accent transition-colors">
+                <a href={`tel:${displayPhone.replace(/\s+/g, "")}`} className="flex items-start space-x-3 hover:text-accent transition-colors">
                   <i className="fa-solid fa-phone text-accent mt-1 shrink-0"></i>
-                  <span>+44 7438 199369</span>
+                  <span>{displayPhone}</span>
                 </a>
               </li>
               <li>
-                <a href="mailto:grapheneinteriors@gmail.com" className="flex items-start space-x-3 hover:text-accent transition-colors">
+                <a href={`mailto:${displayEmail}`} className="flex items-start space-x-3 hover:text-accent transition-colors">
                   <i className="fa-solid fa-envelope text-accent mt-1 shrink-0"></i>
-                  <span className="break-all">grapheneinteriors@gmail.com</span>
+                  <span className="break-all">{displayEmail}</span>
                 </a>
               </li>
               <li className="flex items-start space-x-3">
                 <i className="fa-solid fa-location-dot text-accent mt-1 shrink-0"></i>
                 <span>
-                  48 Chesterfield Road<br />
-                  Leicester, LE5 5LF<br />
-                  United Kingdom
+                  {displayAddress.split(",").map((line: string, i: number) => (
+                    <React.Fragment key={i}>
+                      {line.trim()}<br />
+                    </React.Fragment>
+                  ))}
                 </span>
               </li>
             </ul>
@@ -124,7 +163,7 @@ export default function Footer() {
             <h5 className="text-xs font-bold uppercase tracking-wider text-accent mb-2">Business Hours</h5>
             <div className="flex items-center space-x-2 text-xs">
               <i className="fa-solid fa-clock text-gray-400"></i>
-              <span>Monday – Saturday: 9:00 AM – 6:00 PM</span>
+              <span>{displayHours}</span>
             </div>
           </div>
         </div>
@@ -136,7 +175,7 @@ export default function Footer() {
           </h4>
           <div className="w-full aspect-[4/3] rounded-xl overflow-hidden border border-accent/20 shadow-2xl relative">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2404.1485699479374!2d-1.0970365842880796!3d52.63750057983693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48776101c5f3e9c7%3A0xe54d3bf9cbb87b1e!2s48%20Chesterfield%20Rd%2C%20Leicester%20LE5%205LF%2C%20UK!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
+              src={mapsEmbed}
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -149,7 +188,7 @@ export default function Footer() {
           <div className="mt-3 flex justify-between items-center text-xs">
             <span className="text-gray-400">LE5 5LF, Leicester</span>
             <a
-              href="https://maps.app.goo.gl/XA3LVLXqt3mLuN7A6"
+              href={mapsLink}
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent hover:underline uppercase font-bold tracking-wider"
@@ -182,7 +221,7 @@ export default function Footer() {
       {/* Copyright */}
       <div className="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
         <div>
-          © {currentYear} Graphene Interiors Ltd. All Rights Reserved. Company Registered in UK (2024).
+          {displayCopyright}
         </div>
         <div className="flex space-x-6">
           <Link href="/privacy" className="hover:text-gray-300 transition-colors">Privacy Policy</Link>

@@ -29,7 +29,43 @@ const companyValues = [
   }
 ];
 
-export default function AboutPageClient() {
+export default function AboutPageClient({ aboutData }: { aboutData?: any }) {
+  // Resolve database values with fallbacks and media choice
+  const mediaType = (() => {
+    try {
+      const arr = JSON.parse(aboutData?.videosJson || "[]");
+      return arr[1] || "video";
+    } catch(e) {
+      return "video";
+    }
+  })();
+
+  const bgImage = aboutData?.imagesJson
+    ? (JSON.parse(aboutData.imagesJson)?.[0] || "/images/projects/sliding_wardrobe_dark.jpg")
+    : "/images/projects/sliding_wardrobe_dark.jpg";
+
+  const videoUrl = aboutData?.videosJson
+    ? (JSON.parse(aboutData.videosJson)?.[0] || "/videos/manufacturing.mp4")
+    : "/videos/manufacturing.mp4";
+
+  const achievements = aboutData?.achievementsJson
+    ? JSON.parse(aboutData.achievementsJson)
+    : [
+        "City & Guilds Carpentry & Joinery Level 2 Certification",
+        "10+ Years Active On-Site Installation Experience in the Midlands",
+        "Official UK Limited Incorporation (Active from 2024)",
+        "Own factory and professional machinery",
+        "Onsite cutting for precise, flush fitments",
+        "Separate showroom to view collections"
+      ];
+
+  const storyParagraphs = aboutData?.description
+    ? aboutData.description.split("\n\n")
+    : [
+        "Founded by veteran joiner Arshad, Graphene Interiors Ltd was incorporated in 2024 to bring premium quality interior carpentry directly to Leicester homes. We specialize in supply-and-fit kitchens, sliding wardrobe sets, and bespoke custom units.",
+        "Our company operates on a simple principle: outstanding value for money. We bypass retail sales staff and flat-pack kit limitations. Instead, we use trade-only cabinet suppliers, hand-fit custom drawers, and create bespoke spaces with a truly high-end, luxury finish."
+      ];
+
   return (
     <div className="relative font-sans text-text-charcoal bg-white">
       
@@ -37,7 +73,7 @@ export default function AboutPageClient() {
       <section className="bg-primary text-white py-20 border-b border-accent/25 relative overflow-hidden">
         <div className="absolute inset-0 opacity-15">
           <ImageProtected
-            src="/images/projects/sliding_wardrobe_dark.jpg"
+            src={bgImage}
             alt="Luxury Interiors backdrop"
             fill
             className="object-cover"
@@ -45,7 +81,9 @@ export default function AboutPageClient() {
         </div>
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center space-y-4">
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent">ABOUT GRAPHENE INTERIORS</span>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white">Our Story & Craft</h1>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+            {aboutData?.heading || "Our Story & Craft"}
+          </h1>
           <p className="text-gray-300 font-light max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
             Leicester's trusted experts in bespoke kitchens, sliding wardrobes, and media walls. Directed by Level 2 qualified carpenters with 15+ years experience.
           </p>
@@ -57,16 +95,15 @@ export default function AboutPageClient() {
         
         {/* Story copy */}
         <div className="space-y-6">
-          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent block block">Precision Carpentry</span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent block">Precision Carpentry</span>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-primary">
             Driven by Passion, Built for Leicestershire Families
           </h2>
-          <p className="text-sm font-light leading-relaxed">
-            Founded by veteran joiner Arshad, Graphene Interiors Ltd was incorporated in 2024 to bring premium quality interior carpentry directly to Leicester homes. We specialize in supply-and-fit kitchens, sliding wardrobe sets, and bespoke custom units.
-          </p>
-          <p className="text-sm font-light leading-relaxed">
-            Our company operates on a simple principle: outstanding value for money. We bypass retail sales staff and flat-pack kit limitations. Instead, we use trade-only cabinet suppliers, hand-fit custom drawers, and create bespoke spaces with a truly high-end, luxury finish.
-          </p>
+          {storyParagraphs.map((para: string, i: number) => (
+            <p key={i} className="text-sm font-light leading-relaxed">
+              {para}
+            </p>
+          ))}
 
           <div className="bg-secondary border border-gray-150 p-6 rounded-2xl space-y-4">
             <h4 className="font-serif text-base font-bold text-primary flex items-center space-x-2">
@@ -74,26 +111,32 @@ export default function AboutPageClient() {
               <span>Qualifications & Facilities</span>
             </h4>
             <ul className="space-y-2 text-xs font-light text-text-charcoal pl-7 list-disc">
-              <li>City & Guilds Carpentry & Joinery Level 2 Certification</li>
-              <li>10+ Years Active On-Site Installation Experience in the Midlands</li>
-              <li>Official UK Limited Incorporation (Active from 2024)</li>
-              <li>Own factory and professional machinery</li>
-              <li>Onsite cutting for precise, flush fitments</li>
-              <li>Separate showroom to view collections</li>
+              {achievements.map((ach: string, i: number) => (
+                <li key={i}>{ach}</li>
+              ))}
             </ul>
           </div>
         </div>
 
         {/* Story visual */}
-        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-accent/25 bg-primary">
-          <video
-            className="w-full h-full object-cover select-none pointer-events-none"
-            src="/videos/manufacturing.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
+        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-accent/25 bg-[#0c101d]">
+          {mediaType === "video" ? (
+            <video
+              className="w-full h-full object-cover select-none pointer-events-none animate-none"
+              src={videoUrl}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+          ) : (
+            <ImageProtected
+              src={bgImage}
+              alt="Story Showcase"
+              fill
+              className="object-cover"
+            />
+          )}
           <div className="absolute inset-0 bg-primary/10 pointer-events-none" />
         </div>
 
@@ -106,14 +149,14 @@ export default function AboutPageClient() {
             <span className="text-[10px] font-bold uppercase tracking-wider text-accent">OUR MISSION</span>
             <h3 className="font-serif text-2xl font-bold text-primary">Unlocking Storage & Style</h3>
             <p className="text-xs font-light leading-relaxed text-text-charcoal">
-              To eliminate wasted space. We construct fitted joinery that matches the contour of Leicester properties, ensuring maximum storage depth and visual elegance at a fraction of high-street showroom prices.
+              {aboutData?.mission || "To eliminate wasted space. We construct fitted joinery that matches the contour of Leicester properties, ensuring maximum storage depth and visual elegance at a fraction of high-street showroom prices."}
             </p>
           </div>
           <div className="space-y-4">
             <span className="text-[10px] font-bold uppercase tracking-wider text-accent">OUR VISION</span>
             <h3 className="font-serif text-2xl font-bold text-primary">Setting the Luxury Benchmark</h3>
             <p className="text-xs font-light leading-relaxed text-text-charcoal">
-              To be recognized as Leicester's top-tier brand for luxury kitchen renovations and bespoke wardrobes, noted for Arshad's signature attentiveness and unmatched structural durability.
+              {aboutData?.vision || "To be recognized as Leicester's top-tier brand for luxury kitchen renovations and bespoke wardrobes, noted for Arshad's signature attentiveness and unmatched structural durability."}
             </p>
           </div>
         </div>

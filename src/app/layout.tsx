@@ -4,6 +4,8 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import FloatingWidget from "@/components/floating-widget";
 import PageLoader from "@/components/page-loader";
+import { Providers } from "@/components/providers";
+import MainWrapper from "@/components/main-wrapper";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -52,11 +54,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+import { db } from "@/lib/db";
+import { headers } from "next/headers";
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const settings = await db.websiteSettings.findFirst();
+  const contact = await db.contactInfo.findFirst();
+  const services = await db.service.findMany({
+    where: { isVisible: true },
+    orderBy: { order: "asc" },
+  });
+
+  const headersList = await headers();
+  const pathname = headersList.get("x-pathname") || "";
+  const isAdmin = pathname.startsWith("/admin");
+
   return (
     <html lang="en" className="scroll-smooth">
       <head>
@@ -67,6 +83,7 @@ export default function RootLayout({
           crossOrigin="anonymous" 
           referrerPolicy="no-referrer" 
         />
+        {settings?.faviconUrl && <link rel="icon" href={settings.faviconUrl} />}
       </head>
       <body
         className={`${playfair.variable} ${outfit.variable} antialiased bg-white text-primary font-sans`}
@@ -80,14 +97,14 @@ export default function RootLayout({
               "@type": "LocalBusiness",
               "name": "Graphene Interiors Ltd",
               "image": "https://www.grapheneinteriors.com/images/projects/modern_kitchen_beige.jpg",
-              "logo": "https://www.grapheneinteriors.com/images/logo.png",
+              "logo": settings?.logoUrl || "https://www.grapheneinteriors.com/images/logo.png",
               "@id": "https://www.grapheneinteriors.com/#localbusiness",
               "url": "https://www.grapheneinteriors.com",
-              "telephone": "+447438199369",
-              "email": "grapheneinteriors@gmail.com",
+              "telephone": contact?.phone || "+447438199369",
+              "email": contact?.email || "grapheneinteriors@gmail.com",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "48 Chesterfield Road",
+                "streetAddress": contact?.address?.split(",")?.[0] || "48 Chesterfield Road",
                 "addressLocality": "Leicester",
                 "postalCode": "LE5 5LF",
                 "addressCountry": "GB"
@@ -121,13 +138,15 @@ export default function RootLayout({
             })
           }}
         />
-        <Navbar />
-        <main className="min-h-screen pt-[73px] md:pt-[81px]">
-          {children}
-        </main>
-        <Footer />
-        <FloatingWidget />
-        <PageLoader />
+        <Providers>
+          <Navbar services={services} settings={settings} contact={contact} />
+          <MainWrapper>
+            {children}
+          </MainWrapper>
+          <Footer services={services} settings={settings} contact={contact} />
+          <FloatingWidget contact={contact} />
+          <PageLoader />
+        </Providers>
       </body>
     </html>
   );

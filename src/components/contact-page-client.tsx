@@ -4,7 +4,25 @@ import React from "react";
 import { Phone, Mail, MapPin, Clock, FileText } from "lucide-react";
 import { FreeQuoteForm } from "@/components/lead-forms";
 
-export default function ContactPageClient() {
+export default function ContactPageClient({ contactData }: { contactData?: any }) {
+  const displayPhone = contactData?.phone || "+44 7438 199369";
+  const displayEmail = contactData?.email || "grapheneinteriors@gmail.com";
+  const displayWhatsApp = contactData?.whatsApp || "https://wa.me/447438199369";
+  const displayAddress = contactData?.address || "48 Chesterfield Road, Leicester, LE5 5LF";
+
+  const displayHours = contactData?.openingHoursJson
+    ? (() => {
+        try {
+          const arr = JSON.parse(contactData.openingHoursJson);
+          return arr.map((h: any) => `${h.day}: ${h.hours}`);
+        } catch(e) {
+          return ["Monday – Saturday: 9:00 AM – 6:00 PM", "Sunday: Closed"];
+        }
+      })()
+    : ["Monday – Saturday: 9:00 AM – 6:00 PM", "Sunday: Closed"];
+
+  const mapsEmbed = contactData?.googleMapsEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2404.1485699479374!2d-1.0970365842880796!3d52.63750057983693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48776101c5f3e9c7%3A0xe54d3bf9cbb87b1e!2s48%20Chesterfield%20Rd%2C%20Leicester%20LE5%205LF%2C%20UK!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk";
+
   return (
     <div className="relative font-sans text-text-charcoal bg-white min-h-screen">
       
@@ -30,7 +48,7 @@ export default function ContactPageClient() {
             <p className="text-sm font-light leading-relaxed text-text-charcoal">
               Have questions about your project or need a quote? Reach out to Arshad directly via phone or WhatsApp, or visit our Chesterfield Road coordinates.
             </p>
-
+ 
             <ul className="space-y-6 text-sm">
               <li className="flex items-start space-x-4">
                 <div className="w-11 h-11 flex items-center justify-center bg-accent/15 text-accent rounded-xl shrink-0 mt-1">
@@ -38,13 +56,13 @@ export default function ContactPageClient() {
                 </div>
                 <div>
                   <h4 className="font-bold text-primary text-base">Phone Hotline</h4>
-                  <a href="tel:+447438199369" className="text-text-charcoal hover:text-accent font-medium mt-0.5 block text-sm">
-                    +44 7438 199369
+                  <a href={`tel:${displayPhone.replace(/\s+/g, "")}`} className="text-text-charcoal hover:text-accent font-medium mt-0.5 block text-sm">
+                    {displayPhone}
                   </a>
                   <span className="text-xs text-gray-500 font-light block">Direct call</span>
                 </div>
               </li>
-
+ 
               <li className="flex items-start space-x-4">
                 <div className="w-11 h-11 flex items-center justify-center bg-[#25D366]/10 text-[#25D366] rounded-xl shrink-0 mt-1">
                   <i className="fa-brands fa-whatsapp text-[22px] leading-none"></i>
@@ -52,7 +70,7 @@ export default function ContactPageClient() {
                 <div>
                   <h4 className="font-bold text-primary text-base">WhatsApp Chat</h4>
                   <a 
-                    href="https://wa.me/447438199369" 
+                    href={displayWhatsApp} 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-text-charcoal hover:text-[#25D366] font-medium mt-0.5 block text-sm"
@@ -62,20 +80,20 @@ export default function ContactPageClient() {
                   <span className="text-xs text-gray-500 font-light block">Share project sketches and dimensions</span>
                 </div>
               </li>
-
+ 
               <li className="flex items-start space-x-4">
                 <div className="w-11 h-11 flex items-center justify-center bg-accent/15 text-accent rounded-xl shrink-0 mt-1">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="font-bold text-primary text-base">Email Inquiries</h4>
-                  <a href="mailto:grapheneinteriors@gmail.com" className="text-text-charcoal hover:text-accent font-medium mt-0.5 block text-sm">
-                    grapheneinteriors@gmail.com
+                  <a href={`mailto:${displayEmail}`} className="text-text-charcoal hover:text-accent font-medium mt-0.5 block text-sm">
+                    {displayEmail}
                   </a>
                   <span className="text-xs text-gray-500 font-light block">General trade & supply requests</span>
                 </div>
               </li>
-
+ 
               <li className="flex items-start space-x-4">
                 <div className="w-11 h-11 flex items-center justify-center bg-accent/15 text-accent rounded-xl shrink-0 mt-1">
                   <MapPin className="w-5 h-5" />
@@ -83,13 +101,15 @@ export default function ContactPageClient() {
                 <div>
                   <h4 className="font-bold text-primary text-base">Leicester Office</h4>
                   <p className="text-text-charcoal font-light leading-relaxed mt-0.5 text-sm">
-                    48 Chesterfield Road<br />
-                    Leicester, LE5 5LF<br />
-                    United Kingdom
+                    {displayAddress.split(",").map((line, i) => (
+                      <React.Fragment key={i}>
+                        {line.trim()}<br />
+                      </React.Fragment>
+                    ))}
                   </p>
                 </div>
               </li>
-
+ 
               <li className="flex items-start space-x-4">
                 <div className="w-11 h-11 flex items-center justify-center bg-accent/15 text-accent rounded-xl shrink-0 mt-1">
                   <Clock className="w-5 h-5" />
@@ -97,20 +117,23 @@ export default function ContactPageClient() {
                 <div>
                   <h4 className="font-bold text-primary text-base">Business Hours</h4>
                   <p className="text-text-charcoal font-light leading-relaxed mt-0.5 text-sm">
-                    Monday – Saturday: 9:00 AM – 6:00 PM<br />
-                    Sunday: Closed
+                    {displayHours.map((line: string, i: number) => (
+                      <React.Fragment key={i}>
+                        {line}<br />
+                      </React.Fragment>
+                    ))}
                   </p>
                 </div>
               </li>
             </ul>
           </div>
-
+ 
           {/* Large Google Map window */}
           <div className="space-y-4 pt-4">
             <h3 className="font-serif text-lg font-bold text-primary">Location Map</h3>
             <div className="w-full aspect-video rounded-2xl overflow-hidden border border-accent/25 shadow-xl relative">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2404.1485699479374!2d-1.0970365842880796!3d52.63750057983693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48776101c5f3e9c7%3A0xe54d3bf9cbb87b1e!2s48%20Chesterfield%20Rd%2C%20Leicester%20LE5%205LF%2C%20UK!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
+                src={mapsEmbed}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

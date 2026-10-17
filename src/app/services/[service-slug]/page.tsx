@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Check, Phone, ArrowLeft, Award, Shield, Clock } from "lucide-react";
+import { db } from "@/lib/db";
 import ImageProtected from "@/components/image-protected";
 import VideoProtected from "@/components/video-protected";
 import { openQuoteModal } from "@/components/floating-widget";
@@ -219,6 +220,18 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const slug = resolvedParams["service-slug"];
+  
+  const dbService = await db.service.findFirst({ where: { slug } });
+  if (dbService) {
+    return {
+      title: dbService.seoTitle || `${dbService.title} | Graphene Interiors Ltd`,
+      description: dbService.seoDescription || dbService.shortDescription,
+      alternates: {
+        canonical: `https://www.grapheneinteriors.com/services/${slug}`,
+      },
+    };
+  }
+
   const service = servicesData[slug];
 
   if (!service) {
@@ -240,7 +253,41 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   // Unwrap the params promise using await
   const resolvedParams = await params;
   const slug = resolvedParams["service-slug"];
-  const service = servicesData[slug];
+  
+  let dbService = await db.service.findFirst({
+    where: { slug, isVisible: true }
+  });
+
+  let service: any;
+  if (dbService) {
+    const { cleanVideo, mediaType } = (() => {
+      if (!dbService.video) return { cleanVideo: undefined, mediaType: "image" };
+      try {
+        if (dbService.video.startsWith("[")) {
+          const arr = JSON.parse(dbService.video);
+          return { cleanVideo: arr[0] || undefined, mediaType: arr[1] || "video" };
+        }
+      } catch(e) {}
+      return { cleanVideo: dbService.video, mediaType: "video" };
+    })();
+
+    service = {
+      title: dbService.title,
+      headline: dbService.headline,
+      image: dbService.image,
+      video: cleanVideo,
+      mediaType,
+      description: dbService.description,
+      bullets: (() => {
+        try { return JSON.parse(dbService.bulletsJson); } catch(e) { return []; }
+      })(),
+      benefits: (() => {
+        try { return JSON.parse(dbService.benefitsJson); } catch(e) { return []; }
+      })(),
+    };
+  } else {
+    service = servicesData[slug];
+  }
 
   if (!service) {
     notFound();
@@ -287,8 +334,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             </p>
           </div>
 
-          <div className="relative aspect-video rounded-2xl overflow-hidden border border-accent/25 shadow-xl bg-primary">
-            {service.video ? (
+          <div className="relative aspect-video rounded-2xl overflow-hidden border border-accent/25 shadow-xl bg-[#0c101d]">
+            {service.mediaType === "video" && service.video ? (
               <VideoProtected
                 src={service.video}
                 autoPlay

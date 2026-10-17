@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local SQLite data (contains admin password hashes)
+prisma/*.db
+prisma/*.db-journal

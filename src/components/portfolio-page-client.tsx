@@ -251,7 +251,7 @@ const projectsData = [
   },
 ];
 
-function PortfolioContent() {
+function PortfolioContent({ projects }: { projects?: any[] }) {
   const searchParams = useSearchParams();
   const [activeCategory, setActiveCategory] = useState("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -264,9 +264,45 @@ function PortfolioContent() {
     }
   }, [searchParams]);
 
+  const displayProjects = projects && projects.length > 0
+    ? projects.map((p) => {
+        const { cleanVideo, mediaType } = (() => {
+          if (!p.videosJson) return { cleanVideo: undefined, mediaType: "image" };
+          try {
+            if (p.videosJson.startsWith("[")) {
+              const arr = JSON.parse(p.videosJson);
+              return { cleanVideo: arr[0] || undefined, mediaType: arr[1] || "video" };
+            }
+          } catch(e) {}
+          return { cleanVideo: p.videosJson, mediaType: "video" };
+        })();
+
+        return {
+          id: p.id,
+          title: p.projectName,
+          category: (() => {
+            try { return JSON.parse(p.categoryJson); } catch (e) { return []; }
+          })(),
+          desc: p.description,
+          image: (() => {
+            try {
+              const after = JSON.parse(p.afterImagesJson) || [];
+              if (after.length > 0) return after[0];
+              const before = JSON.parse(p.beforeImagesJson) || [];
+              if (before.length > 0) return before[0];
+            } catch(e) {}
+            return "/images/projects/modern_kitchen_beige.jpg";
+          })(),
+          video: cleanVideo,
+          mediaType,
+          details: p.details || "",
+        };
+      })
+    : projectsData;
+
   const filteredProjects = activeCategory === "all"
-    ? projectsData
-    : projectsData.filter((p) => p.category.includes(activeCategory));
+    ? displayProjects
+    : displayProjects.filter((p) => p.category.includes(activeCategory));
 
   const handlePrev = () => {
     if (lightboxIndex === null) return;
@@ -428,12 +464,24 @@ function PortfolioContent() {
                   className="w-full h-full relative transition-transform duration-250 ease-out"
                   style={{ transform: `scale(${zoomScale})` }}
                 >
-                  <ImageProtected
-                    src={currentProject.image}
-                    alt={currentProject.title}
-                    fill
-                    className="object-contain"
-                  />
+                  {currentProject.mediaType === "video" && currentProject.video ? (
+                    <video
+                      className="w-full h-full object-contain rounded-lg"
+                      src={currentProject.video}
+                      controls
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    />
+                  ) : (
+                    <ImageProtected
+                      src={currentProject.image}
+                      alt={currentProject.title}
+                      fill
+                      className="object-contain"
+                    />
+                  )}
                 </div>
               </div>
 
@@ -482,14 +530,14 @@ function PortfolioContent() {
   );
 }
 
-export default function PortfolioPageClient() {
+export default function PortfolioPageClient({ projects }: { projects?: any[] }) {
   return (
     <Suspense fallback={
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
       </div>
     }>
-      <PortfolioContent />
+      <PortfolioContent projects={projects} />
     </Suspense>
   );
 }

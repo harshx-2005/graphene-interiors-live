@@ -3,10 +3,16 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FreeQuoteForm } from "./lead-forms";
+import { usePathname } from "next/navigation";
 
-export default function FloatingWidget() {
+export default function FloatingWidget({ contact }: { contact?: any }) {
+  const pathname = usePathname();
+
   const [isOpen, setIsOpen] = useState(false);
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+
+  const displayPhone = contact?.phone || "+44 7438 199369";
+  const displayWhatsApp = contact?.whatsApp || "https://wa.me/447438199369";
 
   // Global event listener to open quote modal from any page button
   useEffect(() => {
@@ -14,6 +20,8 @@ export default function FloatingWidget() {
     window.addEventListener("open-quote-modal", handleOpenQuote);
     return () => window.removeEventListener("open-quote-modal", handleOpenQuote);
   }, []);
+
+  if (pathname.startsWith("/admin")) return null;
 
   return (
     <>
@@ -44,14 +52,14 @@ export default function FloatingWidget() {
               </p>
               <div className="space-y-2.5">
                 <a
-                  href="tel:+447438199369"
+                  href={`tel:${displayPhone.replace(/\s+/g, "")}`}
                   className="flex items-center space-x-3 bg-white/10 hover:bg-white/15 px-4 py-2.5 rounded-lg text-sm transition-colors text-white"
                 >
                   <i className="fa-solid fa-phone text-accent"></i>
-                  <span>Call: +44 7438 199369</span>
+                  <span>Call: {displayPhone}</span>
                 </a>
                 <a
-                  href="https://wa.me/447438199369"
+                  href={displayWhatsApp}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 bg-[#25D366]/10 hover:bg-[#25D366]/20 px-4 py-2.5 rounded-lg text-sm transition-colors text-white border border-[#25D366]/20"
@@ -73,21 +81,21 @@ export default function FloatingWidget() {
             </motion.div>
           )}
         </AnimatePresence>
-
+ 
         {/* Action Triggers */}
         <div className="flex flex-col space-y-3 pointer-events-auto items-center">
           {/* Quick Call Button */}
           <a
-            href="tel:+447438199369"
+            href={`tel:${displayPhone.replace(/\s+/g, "")}`}
             className="flex items-center justify-center w-14 h-14 rounded-full bg-primary border border-accent/30 text-accent hover:bg-accent hover:text-primary transition-all shadow-xl hover:scale-110 cursor-pointer animate-none"
             title="Call Graphene Interiors"
           >
             <i className="fa-solid fa-phone text-lg"></i>
           </a>
-
+ 
           {/* WhatsApp Button */}
           <a
-            href="https://wa.me/447438199369"
+            href={displayWhatsApp}
             target="_blank"
             rel="noopener noreferrer"
             className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white hover:bg-[#20ba5a] transition-all shadow-xl hover:scale-110 cursor-pointer"

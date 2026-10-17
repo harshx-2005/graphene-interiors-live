@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
+import { db } from "@/lib/db";
 import PortfolioPageClient from "@/components/portfolio-page-client";
 
-export const metadata: Metadata = {
-  title: "Our Portfolio | Luxury Kitchens & Bespoke Wardrobes | Graphene Interiors",
-  description: "Explore Graphene Interiors' project gallery featuring modern high-gloss kitchens, sliding mirrored wardrobes, TV media walls, and custom woodwork fitted in Leicester LE5.",
-  alternates: {
-    canonical: "https://www.grapheneinteriors.com/portfolio",
-  },
-};
+export const revalidate = 0; // Disable page server cache for dynamic updates
 
-export default function Page() {
-  return <PortfolioPageClient />;
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await db.seoSettings.findFirst();
+  return {
+    title: `Our Portfolio | ${seo?.title || "Graphene Interiors"}`,
+    description: seo?.description || "Explore Graphene Interiors' project gallery featuring modern kitchens, wardrobes, and media walls.",
+  };
+}
+
+export default async function Page() {
+  const projects = await db.portfolioProject.findMany({
+    orderBy: {
+      order: "asc",
+    },
+  });
+
+  return <PortfolioPageClient projects={projects} />;
 }
